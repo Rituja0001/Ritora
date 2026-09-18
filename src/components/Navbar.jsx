@@ -90,7 +90,7 @@ export default function Navbar() {
                 className="px-4 2xl:px-5 py-2.5 bg-transparent border border-[#D9BA6A] text-[#D9BA6A] hover:text-[#0C3332] hover:bg-[#D9BA6A] text-[11px] 2xl:text-xs uppercase tracking-[0.18em] font-semibold transition-all duration-300 rounded-sm shadow-sm hover:shadow-gold-glow flex items-center gap-2 whitespace-nowrap min-h-[40px]"
               >
                 <Sparkles className="w-3.5 h-3.5" />
-                <span>Book Consultation</span>
+                <span>Partner With Ritora</span>
               </a>
             </div>
 
