@@ -8,7 +8,7 @@ import { Bed, Bath, Maximize2, MapPin, ArrowUpRight, Sparkles } from "lucide-rea
  * - 7 Developer titles: Emaar, Aldar, Dubai South, Ellington, DAMAC, SOL, Imtiaz
  * - Subtext line: "Latest launch and project highlights to be provided"
  * - Heading: "Featured Projects"
- * - Subheading: "Ritora will initially highlight selected off-plan opportunities from the following developers and destinations. The latest launch and complete project details for each will be provided separately before publication."
+ * - Subheading: "Project details coming soon — curated off-plan opportunities will be published shortly."
  */
 export default function FeaturedProperties() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -129,7 +129,7 @@ export default function FeaturedProperties() {
               Featured Projects
             </h2>
             <p className="text-neutral-300 text-sm sm:text-base mt-2 max-w-2xl font-light leading-relaxed">
-              Ritora will initially highlight selected off-plan opportunities from the following developers and destinations. The latest launch and complete project details for each will be provided separately before publication.
+              Project details coming soon — curated off-plan opportunities will be published shortly.
             </p>
           </div>
 

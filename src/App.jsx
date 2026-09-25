@@ -1,62 +1,68 @@
 import React from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import StatsBar from "./components/StatsBar";
-import WhoWeAre from "./components/WhoWeAre";
-import FeaturedProjects from "./components/FeaturedProjects";
-import WhyChooseUs from "./components/WhyChooseUs";
-import Testimonials from "./components/Testimonials";
-import TrustBlock from "./components/TrustBlock";
-import CTASection from "./components/CTASection";
 import Footer from "./components/Footer";
+import FloatingWhatsApp from "./components/FloatingWhatsApp";
+import ScrollToTop from "./components/ScrollToTop";
+
+// Multi-Page Routes
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Projects from "./pages/Projects";
+import Investors from "./pages/Investors";
+import Developers from "./pages/Developers";
+import Locations from "./pages/Locations";
+import Contact from "./pages/Contact";
 
 /**
  * Main Application Shell - Ritora Dubai Luxury Real Estate
- * Displays exclusively the approved HOME PAGE layout with all required sections:
- * 1. Navbar (Logo, links, phone, consultation button)
- * 2. Hero (Full-width looping video background, badge, Playfair heading, search card)
- * 3. Featured Properties (6 curated luxury listings with filters and specs)
- * 4. Why Choose Ritora (4 sovereign advisory pillars)
- * 5. Testimonials (HNW investor endorsements and reviews)
- * 5.5. Trust Block (Selected relationships / verified partner placeholders)
- * 6. Call-to-Action (VIP inquiry and advisory triggers)
- * 7. Footer (Brand info, quick links, office address, newsletter briefing)
+ * Proper multi-page site architecture using React Router:
+ * - / : Home
+ * - /about : About (incorporating Leadership)
+ * - /projects : Featured Projects
+ * - /investors : Investment Opportunities
+ * - /developers : Developer Partnerships
+ * - /locations : Locations
+ * - /contact : Contact (Real functional form)
+ *
+ * Persistent Global Elements:
+ * - Navbar (7 essential items + CTA)
+ * - Footer (Updated contact info, legal entity placeholder, multi-page links)
+ * - FloatingWhatsApp (Persistent fixed bottom-right with gentle pulse)
+ * - ScrollToTop (Auto-scroll to top on route navigation)
  */
 export default function App() {
   return (
-    <div className="min-h-screen bg-[#0C3332] text-white font-sans selection:bg-[#D9BA6A] selection:text-[#0C3332]">
-      {/* 1. Navbar */}
-      <Navbar />
+    <BrowserRouter>
+      <ScrollToTop />
+      <div className="min-h-screen flex flex-col bg-[#0C3332] text-white font-sans selection:bg-[#D9BA6A] selection:text-[#0C3332]">
+        {/* Global Navigation Bar */}
+        <Navbar />
 
-      {/* Main Home Page Content */}
-      <main>
-        {/* 2. Hero with Background Video */}
-        <Hero />
+        {/* Dynamic Route Pages */}
+        <main className="flex-1">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/investors" element={<Investors />} />
+            <Route path="/developers" element={<Developers />} />
+            <Route path="/locations" element={<Locations />} />
+            <Route path="/contact" element={<Contact />} />
+            {/* Legacy route redirects */}
+            <Route path="/properties" element={<Navigate to="/projects" replace />} />
+            <Route path="/properties/*" element={<Navigate to="/projects" replace />} />
+            {/* Fallback to Home */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </main>
 
-        {/* 2.5. Stats/Highlights Bar */}
-        <StatsBar />
+        {/* Global Footer */}
+        <Footer />
 
-        {/* 2.6. Who We Are */}
-        <WhoWeAre />
-
-        {/* 3. Why Choose Ritora (Advisory Benchmark & Differentiators) */}
-        <WhyChooseUs />
-
-        {/* 4. Featured Projects (Curated Developer Portfolio Showcase) */}
-        <FeaturedProjects />
-
-        {/* 5. Testimonials (Client Testimonials - Pending Approval) */}
-        <Testimonials />
-
-        {/* 5.5. Selected Relationships / Trust Block */}
-        <TrustBlock />
-
-        {/* 6. Call to Action */}
-        <CTASection />
-      </main>
-
-      {/* 7. Footer */}
-      <Footer />
-    </div>
+        {/* Persistent Floating WhatsApp Action Button */}
+        <FloatingWhatsApp />
+      </div>
+    </BrowserRouter>
   );
 }

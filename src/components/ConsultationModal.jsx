@@ -187,7 +187,7 @@ export default function ConsultationModal({ isOpen, onClose }) {
               <div className="flex items-center gap-2 text-neutral-400 text-[11px] pt-1">
                 <Shield className="w-3.5 h-3.5 text-ritora-gold" />
                 <span>
-                  Strict non-disclosure agreements (NDAs) honored on all client communications.
+                  Discreet and independent advisory for all client inquiries.
                 </span>
               </div>
 

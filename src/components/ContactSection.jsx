@@ -1,35 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
-import {
-  Mail,
-  Phone,
-  MessageSquare,
-  Sparkles,
-  CheckCircle2,
-  Send,
-  Clock,
-  ArrowRight,
-} from "lucide-react";
+import React, { useState } from "react";
+import { Mail, Phone, Clock, Send, CheckCircle2, Sparkles } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa6";
 
 /**
- * Contact Page - Ritora Dubai Luxury Real Estate
- * Features a real, functional advisory contact form with:
- * - Name
- * - Phone/WhatsApp
- * - Email
- * - Role dropdown: Buyer / Investor / Developer
- * - Budget in AED
- * - Timeframe dropdown: Immediate / Within 30 Days / Prospecting
- * - Message textarea
- * - Client-side submission handling & interactive confirmation state
- * - Clear code comments for backend service integration
- * - Official contact credentials (email: info@ritoraluxerealestate.ae, phone: +971 58 575 8023)
- * - Address removed with client confirmation TODO comment
+ * ContactSection Component (Section 10)
+ * Background: Light Cream (#FAF8F5)
+ * Alternating rhythm: Sits between Dark Teal Testimonials and Deep Teal Footer.
+ * Features:
+ * - Real, functional consultation request form with required fields:
+ *   Name, Phone/WhatsApp, Email, Role dropdown, Budget in AED, Timeframe dropdown, Message
+ * - Submit state simulation with confirmation feedback
+ * - Official coordinates with TODO for physical address
  */
-export default function Contact() {
-  const [searchParams] = useSearchParams();
-
+export default function ContactSection() {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -43,23 +26,6 @@ export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
-  // Pre-fill message if subject or project was passed in URL query
-  useEffect(() => {
-    const subjectParam = searchParams.get("subject");
-    const locationParam = searchParams.get("location");
-    if (subjectParam) {
-      setFormData((prev) => ({
-        ...prev,
-        message: `I would like more information regarding: ${subjectParam}.`,
-      }));
-    } else if (locationParam) {
-      setFormData((prev) => ({
-        ...prev,
-        message: `I am interested in exploring opportunities in: ${locationParam}.`,
-      }));
-    }
-  }, [searchParams]);
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -69,7 +35,6 @@ export default function Contact() {
     e.preventDefault();
     setSubmitting(true);
 
-    // Simulate async submission
     setTimeout(() => {
       // TODO: Connect to backend/email service (e.g., EmailJS, Formspree, or custom API) once ready
       console.log("Advisory Form Submission Received:", formData);
@@ -91,53 +56,47 @@ export default function Contact() {
     });
   };
 
-  const whatsappDirectUrl = "https://wa.me/971585758023?text=Hello%20Ritora%20advisory%20team%2C%20I%20would%20like%20to%20discuss%20Dubai%20property%20opportunities.";
-
   return (
-    <div className="bg-[#FAF8F5] text-[#0C3332] min-h-screen pt-24 sm:pt-28">
-      {/* 1. Header Banner */}
-      <section className="bg-[#0C3332] text-white py-16 sm:py-20 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[#D9BA6A] font-semibold mb-3">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>DIRECT ADVISORY</span>
-            </div>
-            <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
-              Speak With an Advisor
-            </h1>
-            <p className="text-neutral-200 text-sm sm:text-base lg:text-lg font-light leading-relaxed">
-              Whether you are an investor assessing off-plan allocations, a private buyer seeking a residence, or a developer exploring sales representation, our team provides considered counsel.
-            </p>
+    <section id="contact" className="py-16 sm:py-20 lg:py-24 bg-[#FAF8F5] text-[#0C3332] relative z-10 border-b border-[#D9BA6A]/20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
+          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[#B89645] font-semibold mb-2.5">
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>DIRECT ADVISORY</span>
           </div>
+          <h2 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-bold text-[#0C3332] tracking-tight leading-snug">
+            Speak With an Advisor
+          </h2>
+          <p className="text-neutral-600 text-sm sm:text-base mt-2 font-light leading-relaxed">
+            Whether you are assessing off-plan allocations, seeking a private residence, or exploring developer representation, our principals provide considered counsel.
+          </p>
         </div>
-      </section>
 
-      {/* 2. Main Contact Grid */}
-      <section className="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
-          {/* Left Column: Real Functional Form */}
-          <div className="lg:col-span-7 bg-white rounded-xl p-7 sm:p-10 border border-[#D9BA6A]/30 shadow-sm">
+        {/* Form and Coordinates Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          {/* Left Column: Form */}
+          <div className="lg:col-span-7 bg-white rounded-2xl p-7 sm:p-9 border border-[#D9BA6A]/30 shadow-sm">
             <div className="mb-6">
-              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#0C3332] mb-1">
+              <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#0C3332] mb-1">
                 Advisory Consultation Request
-              </h2>
-              <p className="text-xs sm:text-sm text-neutral-600 font-light">
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-500 font-light">
                 Please provide your requirements below. An advisor will contact you within 24 hours.
               </p>
             </div>
 
             {submitted ? (
-              <div className="p-8 bg-[#FAF8F5] border border-[#D9BA6A]/50 rounded-lg text-center space-y-4 animate-in fade-in duration-300">
+              <div className="p-8 bg-[#FAF8F5] border border-[#D9BA6A]/40 rounded-xl text-center space-y-4 animate-in fade-in duration-300">
                 <div className="w-14 h-14 rounded-full bg-[#0C3332] text-[#D9BA6A] flex items-center justify-center mx-auto">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
-                <h3 className="font-serif text-2xl font-bold text-[#0C3332]">
+                <h4 className="font-serif text-2xl font-bold text-[#0C3332]">
                   Consultation Request Received
-                </h3>
+                </h4>
                 <p className="text-sm text-neutral-600 font-light max-w-md mx-auto leading-relaxed">
                   Thank you, <strong>{formData.name || "Client"}</strong>. We have received your inquiry. A senior Ritora advisor will review your specifications and contact you shortly at{" "}
-                  <strong>{formData.email}</strong> or via WhatsApp.
+                  <strong>{formData.email}</strong>.
                 </p>
                 <div className="pt-2">
                   <button
@@ -149,15 +108,15 @@ export default function Contact() {
                 </div>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
                 {/* 1. Name */}
                 <div>
-                  <label htmlFor="name" className="block text-xs uppercase tracking-wider font-semibold text-[#0C3332] mb-1.5">
+                  <label htmlFor="home-contact-name" className="block text-xs uppercase tracking-wider font-semibold text-[#0C3332] mb-1.5">
                     Full Name <span className="text-red-500">*</span>
                   </label>
                   <input
                     type="text"
-                    id="name"
+                    id="home-contact-name"
                     name="name"
                     required
                     value={formData.name}
@@ -170,12 +129,12 @@ export default function Contact() {
                 {/* 2. Phone/WhatsApp & 3. Email */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="phone" className="block text-xs uppercase tracking-wider font-semibold text-[#0C3332] mb-1.5">
+                    <label htmlFor="home-contact-phone" className="block text-xs uppercase tracking-wider font-semibold text-[#0C3332] mb-1.5">
                       Phone / WhatsApp <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="tel"
-                      id="phone"
+                      id="home-contact-phone"
                       name="phone"
                       required
                       value={formData.phone}
@@ -186,12 +145,12 @@ export default function Contact() {
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-xs uppercase tracking-wider font-semibold text-[#0C3332] mb-1.5">
+                    <label htmlFor="home-contact-email" className="block text-xs uppercase tracking-wider font-semibold text-[#0C3332] mb-1.5">
                       Email Address <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="email"
-                      id="email"
+                      id="home-contact-email"
                       name="email"
                       required
                       value={formData.email}
@@ -202,14 +161,14 @@ export default function Contact() {
                   </div>
                 </div>
 
-                {/* 4. Dropdown: "I am a..." */}
+                {/* 4. Dropdown: "I am a...", 5. Budget, 6. Timeframe */}
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   <div>
-                    <label htmlFor="role" className="block text-xs uppercase tracking-wider font-semibold text-[#0C3332] mb-1.5">
+                    <label htmlFor="home-contact-role" className="block text-xs uppercase tracking-wider font-semibold text-[#0C3332] mb-1.5">
                       I am a...
                     </label>
                     <select
-                      id="role"
+                      id="home-contact-role"
                       name="role"
                       value={formData.role}
                       onChange={handleChange}
@@ -221,14 +180,13 @@ export default function Contact() {
                     </select>
                   </div>
 
-                  {/* 5. Budget (in AED) */}
                   <div>
-                    <label htmlFor="budget" className="block text-xs uppercase tracking-wider font-semibold text-[#0C3332] mb-1.5">
+                    <label htmlFor="home-contact-budget" className="block text-xs uppercase tracking-wider font-semibold text-[#0C3332] mb-1.5">
                       Budget (in AED)
                     </label>
                     <input
                       type="text"
-                      id="budget"
+                      id="home-contact-budget"
                       name="budget"
                       value={formData.budget}
                       onChange={handleChange}
@@ -237,13 +195,12 @@ export default function Contact() {
                     />
                   </div>
 
-                  {/* 6. Timeframe */}
                   <div>
-                    <label htmlFor="timeframe" className="block text-xs uppercase tracking-wider font-semibold text-[#0C3332] mb-1.5">
+                    <label htmlFor="home-contact-timeframe" className="block text-xs uppercase tracking-wider font-semibold text-[#0C3332] mb-1.5">
                       Timeframe
                     </label>
                     <select
-                      id="timeframe"
+                      id="home-contact-timeframe"
                       name="timeframe"
                       value={formData.timeframe}
                       onChange={handleChange}
@@ -258,21 +215,21 @@ export default function Contact() {
 
                 {/* 7. Message */}
                 <div>
-                  <label htmlFor="message" className="block text-xs uppercase tracking-wider font-semibold text-[#0C3332] mb-1.5">
+                  <label htmlFor="home-contact-message" className="block text-xs uppercase tracking-wider font-semibold text-[#0C3332] mb-1.5">
                     Your Requirements & Goals
                   </label>
                   <textarea
-                    id="message"
+                    id="home-contact-message"
                     name="message"
                     rows={4}
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Please specify preferred locations, project types, or developer questions..."
+                    placeholder="Specify target areas, project categories, or developer queries..."
                     className="w-full px-4 py-3 bg-[#FAF8F5] border border-neutral-300 rounded-md text-sm text-[#0C3332] focus:outline-none focus:border-[#D9BA6A] focus:bg-white transition-all resize-y"
                   />
                 </div>
 
-                {/* 8. Submit button */}
+                {/* Submit button */}
                 <div className="pt-2">
                   <button
                     type="submit"
@@ -293,10 +250,9 @@ export default function Contact() {
             )}
           </div>
 
-          {/* Right Column: Direct Contact Details & WhatsApp Channel */}
+          {/* Right Column: Direct Coordinates Card */}
           <div className="lg:col-span-5 space-y-6">
-            {/* Quick Contact Card */}
-            <div className="bg-white rounded-xl p-7 sm:p-8 border border-[#D9BA6A]/30 shadow-sm space-y-6">
+            <div className="bg-white rounded-2xl p-7 sm:p-8 border border-[#D9BA6A]/30 shadow-sm space-y-6">
               <div>
                 <span className="text-xs uppercase tracking-[0.2em] text-[#B89645] font-bold block mb-1">
                   OFFICIAL COORDINATES
@@ -304,15 +260,15 @@ export default function Contact() {
                 <h3 className="font-serif text-2xl font-bold text-[#0C3332]">
                   Reach Out to Us
                 </h3>
-                <p className="text-xs sm:text-sm text-neutral-600 font-light mt-1">
+                <p className="text-xs sm:text-sm text-neutral-500 font-light mt-1">
                   Direct channels for private client advisory and developer relations.
                 </p>
               </div>
 
               <div className="space-y-4 pt-2 border-t border-neutral-100">
-                {/* Phone & WhatsApp */}
+                {/* Telephone */}
                 <div className="flex items-start gap-3.5">
-                  <div className="w-10 h-10 rounded-lg bg-[#FAF8F5] border border-neutral-200 flex items-center justify-center text-[#0C3332] flex-shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-[#FAF8F5] border border-neutral-200 flex items-center justify-center text-[#0C3332] flex-shrink-0">
                     <Phone className="w-5 h-5 text-[#B89645]" />
                   </div>
                   <div>
@@ -320,7 +276,7 @@ export default function Contact() {
                       Telephone / WhatsApp
                     </span>
                     <a
-                      href="tel:+971585758023"
+                      href="#"
                       className="font-medium text-sm text-[#0C3332] hover:text-[#B89645] transition-colors"
                     >
                       +971 58 575 8023
@@ -330,7 +286,7 @@ export default function Contact() {
 
                 {/* Email */}
                 <div className="flex items-start gap-3.5">
-                  <div className="w-10 h-10 rounded-lg bg-[#FAF8F5] border border-neutral-200 flex items-center justify-center text-[#0C3332] flex-shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-[#FAF8F5] border border-neutral-200 flex items-center justify-center text-[#0C3332] flex-shrink-0">
                     <Mail className="w-5 h-5 text-[#B89645]" />
                   </div>
                   <div>
@@ -338,7 +294,7 @@ export default function Contact() {
                       Advisory Desk Email
                     </span>
                     <a
-                      href="mailto:info@ritoraluxerealestate.ae"
+                      href="#"
                       className="font-medium text-sm text-[#0C3332] hover:text-[#B89645] transition-colors break-all"
                     >
                       info@ritoraluxerealestate.ae
@@ -346,10 +302,10 @@ export default function Contact() {
                   </div>
                 </div>
 
-                {/* Office Address Status */}
+                {/* Operating Hours */}
                 {/* // TODO: Add correct office address once provided by client */}
                 <div className="flex items-start gap-3.5 pt-2 border-t border-neutral-100">
-                  <div className="w-10 h-10 rounded-lg bg-[#FAF8F5] border border-neutral-200 flex items-center justify-center text-[#0C3332] flex-shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-[#FAF8F5] border border-neutral-200 flex items-center justify-center text-[#0C3332] flex-shrink-0">
                     <Clock className="w-5 h-5 text-[#B89645]" />
                   </div>
                   <div>
@@ -369,21 +325,19 @@ export default function Contact() {
               {/* Direct WhatsApp Action Box */}
               <div className="pt-4 border-t border-neutral-100">
                 <a
-                  href={whatsappDirectUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#"
                   className="w-full py-3.5 px-4 bg-[#25D366] hover:bg-[#20ba59] text-white rounded-md text-xs uppercase tracking-wider font-bold flex items-center justify-center gap-2 shadow-sm transition-all"
                 >
                   <FaWhatsapp className="w-5 h-5" />
-                  <span>Start Direct WhatsApp Chat</span>
+                  <span>Start WhatsApp Discussion</span>
                 </a>
               </div>
             </div>
 
-            {/* Advisory Guarantee Box */}
-            <div className="bg-[#0C3332] text-white rounded-xl p-7 border border-[#D9BA6A]/40 space-y-3">
+            {/* Advisory Note */}
+            <div className="bg-[#0C3332] text-white rounded-2xl p-7 border border-[#D9BA6A]/40 space-y-2.5">
               <h4 className="font-serif text-lg font-bold text-white">
-                Independent Perspective
+                Independent Advisory Guarantee
               </h4>
               <p className="text-xs text-neutral-300 font-light leading-relaxed">
                 Ritora operates as an uncompromised boutique advisory. Our evaluations prioritize project fundamentals, developer pedigree, and realistic exit potential rather than high-volume sales targets.
@@ -391,7 +345,7 @@ export default function Contact() {
             </div>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 }

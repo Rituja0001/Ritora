@@ -52,7 +52,7 @@ export const properties = [
   },
   {
     id: "ritora-downtown-sky-penthouse",
-    title: "The Sky Crown Royal Penthouse",
+    title: "The Sky Crown Penthouse",
     tagline: "Panoramic triplex penthouse overlooking the Burj Khalifa & Fountains",
     location: "Opera District, Downtown Dubai, UAE",
     neighborhood: "Downtown Dubai",
@@ -97,7 +97,7 @@ export const properties = [
   },
   {
     id: "ritora-emirates-hills-manor",
-    title: "The Versailles Sovereign Manor",
+    title: "The Versailles Grand Manor",
     tagline: "Palatial neoclassical mansion on prime Championship Golf Course plot",
     location: "Sector V, Emirates Hills, Dubai",
     neighborhood: "Emirates Hills",
@@ -119,7 +119,7 @@ export const properties = [
     featured: true,
     status: "New Launch",
     yearBuilt: 2024,
-    description: "Referred to as the 'Beverly Hills of Dubai', Emirates Hills reaches its apex in The Versailles Sovereign Manor. Standing proudly on an expansive 36,000 sq ft plot directly fronting the Montgomerie Championship Golf Course, this majestic residence embodies timeless French neoclassical architecture married with bespoke modern engineering. Grand double-spiral staircases, 24k gold-leaf mouldings, indoor and outdoor swimming pavilions, and private spa retreats deliver an unmatched royal ambiance.",
+    description: "Referred to as the 'Beverly Hills of Dubai', Emirates Hills reaches its apex in The Versailles Grand Manor. Standing proudly on an expansive 36,000 sq ft plot directly fronting the Montgomerie Championship Golf Course, this majestic residence embodies timeless French neoclassical architecture married with bespoke modern engineering. Grand double-spiral staircases, 24k gold-leaf mouldings, indoor and outdoor swimming pavilions, and private spa retreats deliver an unmatched luxury ambiance.",
     amenities: [
       "Montgomerie Golf Course Direct Frontage",
       "Indoor Olympic-Length Heated Pool",
@@ -268,8 +268,8 @@ export const properties = [
     }
   },
   {
-    id: "ritora-palm-royal-atlantis-sky",
-    title: "The Royal Atlantis Sky Mansion",
+    id: "ritora-palm-atlantis-sky",
+    title: "The Atlantis Sky Mansion",
     tagline: "Iconic landmark residence perched over the Arabian Gulf",
     location: "Crescent Road, Palm Jumeirah, Dubai",
     neighborhood: "Palm Jumeirah",
@@ -291,7 +291,7 @@ export const properties = [
     featured: true,
     status: "Exclusive Listing",
     yearBuilt: 2023,
-    description: "Elevate your reality at the most talked-about architectural landmark in the world. The Sky Mansion at The Royal Atlantis features private cantilevered sky pools, dual-aspect terraces looking out to the Palm island crescent on one side and the endless horizon of the Arabian Gulf on the other. Access to over 17 celebrity chef restaurants, private beach clubs, and ultra-VIP Atlantis service.",
+    description: "Elevate your reality at the most talked-about architectural landmark in the world. The Sky Mansion at Atlantis The Royal features private cantilevered sky pools, dual-aspect terraces looking out to the Palm island crescent on one side and the endless horizon of the Arabian Gulf on the other. Access to over 17 celebrity chef restaurants, private beach clubs, and ultra-VIP Atlantis service.",
     amenities: [
       "Cantilevered Heated Private Sky Pool",
       "VIP Access to Atlantis Celebrated Restaurants",
@@ -369,7 +369,7 @@ export const primeNeighborhoods = [
   },
   {
     name: "Emirates Hills",
-    description: "Dubai's sovereign haven for global leaders, royal dignitaries, and ultra-high-net-worth palatial golf estates.",
+    description: "Dubai's prestigious haven for global investors, and ultra-high-net-worth palatial golf estates.",
     propertiesCount: 9,
     startingPrice: "AED 55,000,000",
     image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80"
