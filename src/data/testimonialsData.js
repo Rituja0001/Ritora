@@ -71,3 +71,4 @@ export const testimonialsData = [
 
 // Export default as fallback for default imports
 export default testimonialsData;
+

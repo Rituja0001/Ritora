@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { ArrowRight, MessageSquare } from "lucide-react";
 import heroVideoPlaceholder from "../assets/Images/reaestate-video.mp4";
 
@@ -6,14 +7,13 @@ import heroVideoPlaceholder from "../assets/Images/reaestate-video.mp4";
 const VIDEO_SRC = heroVideoPlaceholder;
 
 /**
- * Hero Section for Ritora Luxury Dubai Real Estate
+ * Hero Section for Ritora Luxe Real Estate LLC
  * Features:
  * - Autoplay looping background video with object-cover on all devices (no distortion)
  * - Restrained modern luxury typography (Playfair Display + Plus Jakarta Sans)
  * - Heading: "Curated Dubai Property Opportunities. Considered Advice."
  * - Subheading: investor- and developer-focused advisory copy
- * - Exactly two primary CTAs: "Explore Projects" and "Speak With an Advisor"
- * - Both CTAs point to href="#" per linking requirement
+ * - Two primary CTAs linking cleanly to /projects and /contact
  */
 export default function Hero() {
   return (
@@ -56,25 +56,25 @@ export default function Hero() {
           Guiding discerning investors and visionary developers through Dubai's most promising real estate opportunities with independent market insight and disciplined commercial execution.
         </p>
 
-        {/* Exactly Two CTAs pointing to href="#" */}
+        {/* Two CTAs linking cleanly to internal routes */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 max-w-md sm:max-w-none mx-auto w-full">
           {/* Primary CTA: Explore Projects */}
-          <a
-            href="#"
+          <Link
+            to="/projects"
             className="w-full sm:w-auto min-h-[46px] sm:min-h-[48px] px-7 sm:px-8 py-3.5 sm:py-4 bg-[#D9BA6A] hover:bg-[#E5CE8F] text-[#0C3332] text-xs uppercase tracking-[0.16em] font-bold rounded-sm shadow-sm hover:shadow-md transition-all duration-300 flex items-center justify-center gap-2"
           >
             <span>Explore Projects</span>
             <ArrowRight className="w-4 h-4" />
-          </a>
+          </Link>
 
           {/* Secondary CTA: Speak With an Advisor */}
-          <a
-            href="#"
+          <Link
+            to="/contact"
             className="w-full sm:w-auto min-h-[46px] sm:min-h-[48px] px-7 sm:px-8 py-3.5 sm:py-4 bg-transparent border border-[#D9BA6A] text-white hover:text-[#0C3332] hover:bg-[#D9BA6A] text-xs uppercase tracking-[0.16em] font-semibold rounded-sm transition-all duration-300 flex items-center justify-center gap-2"
           >
             <MessageSquare className="w-3.5 h-3.5 text-[#D9BA6A]" />
             <span>Speak With an Advisor</span>
-          </a>
+          </Link>
         </div>
       </div>
     </section>

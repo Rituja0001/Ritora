@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { TrendingUp, Coins, Home, PieChart, Sparkles, ArrowRight } from "lucide-react";
 
 /**
@@ -7,37 +8,38 @@ import { TrendingUp, Coins, Home, PieChart, Sparkles, ArrowRight } from "lucide-
  * Alternating rhythm: Sits between Light Cream Why Ritora and Light Cream Developer Partnerships.
  * Features:
  * - 4 Strategic Investment Pillars (Capital Appreciation, Rental Income, End-Use Purchases, Portfolio Diversification)
- * - CTA: "Request a Consultation" pointing to href="#" per linking requirement
+ * - Streamlined, crisp copy (Requirement 13)
+ * - Clear CTA linking to /contact and /investors
  */
 export default function InvestmentOpportunities() {
   const pillars = [
     {
       icon: TrendingUp,
       title: "Capital Appreciation",
-      tagline: "Strategic Entry in High-Growth Corridors",
+      tagline: "High-Growth Corridors",
       description:
-        "Targeting early-phase off-plan releases in infrastructure-backed growth hubs where capital values expand significantly as community milestones are delivered.",
+        "Targeting early-phase off-plan launches in infrastructure-backed corridors where values expand as master community milestones deliver.",
     },
     {
       icon: Coins,
-      title: "Rental Income & Yield",
-      tagline: "Sustainable Cash Flow in Liquid Submarkets",
+      title: "Rental Yield Strategy",
+      tagline: "Sustainable Cash Flow",
       description:
-        "Curating residences optimized for sustained tenancy demand in central business and leisure districts, stress-testing net yields post-service charges.",
+        "Curating residences in liquid business and leisure districts, stress-testing net yields after service charges and occupancy assumptions.",
     },
     {
       icon: Home,
-      title: "End-Use Purchases",
-      tagline: "Prime Living with Lasting Value Preservation",
+      title: "End-Use Living",
+      tagline: "Prime Preservation",
       description:
-        "Guiding primary residence and vacation home buyers with focused analysis on build pedigree, master community amenities, and family lifestyle convenience.",
+        "Guiding primary residence and vacation home buyers with focused analysis on build pedigree, master community amenities, and family convenience.",
     },
     {
       icon: PieChart,
       title: "Portfolio Diversification",
-      tagline: "Balanced Multi-Asset Exposure",
+      tagline: "Multi-Asset Exposure",
       description:
-        "Structuring multi-unit acquisitions across varied developers, delivery timelines, and property types to optimize risk-adjusted capital returns.",
+        "Structuring multi-unit allocations across varied developers, delivery timelines, and property categories to balance risk and liquidity.",
     },
   ];
 
@@ -59,13 +61,13 @@ export default function InvestmentOpportunities() {
             </p>
           </div>
 
-          <a
-            href="#"
+          <Link
+            to="/contact"
             className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#D9BA6A] hover:bg-[#E5CE8F] text-[#0C3332] text-xs uppercase tracking-[0.16em] font-bold rounded-sm shadow-sm transition-all duration-300 whitespace-nowrap self-start md:self-end"
           >
             <span>Request a Consultation</span>
             <ArrowRight className="w-4 h-4" />
-          </a>
+          </Link>
         </div>
 
         {/* 4 Pillars 2x2 Grid */}
@@ -99,13 +101,13 @@ export default function InvestmentOpportunities() {
                   <span className="text-neutral-400 font-light">
                     Objective 0{index + 1}
                   </span>
-                  <a
-                    href="#"
+                  <Link
+                    to="/contact"
                     className="inline-flex items-center gap-1 text-[#D9BA6A] hover:text-[#E5CE8F] font-semibold uppercase tracking-wider text-[11px] transition-colors"
                   >
                     <span>Inquire</span>
                     <ArrowRight className="w-3.5 h-3.5" />
-                  </a>
+                  </Link>
                 </div>
               </div>
             );

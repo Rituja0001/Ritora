@@ -61,9 +61,9 @@ export default function Developers() {
   ];
 
   return (
-    <div className="bg-[#FAF8F5] text-[#0C3332] min-h-screen pt-24 sm:pt-28">
+    <div className="bg-[#FAF8F5] text-[#0C3332] min-h-screen">
       {/* 1. Header Banner */}
-      <section className="bg-[#0C3332] text-white py-16 sm:py-20 lg:py-24 relative overflow-hidden">
+      <section className="bg-[#0C3332] text-white pt-28 pb-16 sm:pt-36 sm:pb-20 lg:pt-40 lg:pb-24 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[#D9BA6A] font-semibold mb-3">

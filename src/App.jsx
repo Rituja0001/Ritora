@@ -1,5 +1,5 @@
-import React from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import React, { Suspense, lazy } from "react";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import FloatingWhatsApp from "./components/FloatingWhatsApp";
@@ -13,6 +13,12 @@ import Investors from "./pages/Investors";
 import Developers from "./pages/Developers";
 import Locations from "./pages/Locations";
 import Contact from "./pages/Contact";
+import Services from "./pages/Services";
+import SellRent from "./pages/SellRent";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsConditions from "./pages/TermsConditions";
+
+const AdminApp = lazy(() => import("./admin/AdminApp"));
 
 /**
  * Main Application Shell - Ritora Dubai Luxury Real Estate
@@ -31,10 +37,31 @@ import Contact from "./pages/Contact";
  * - FloatingWhatsApp (Persistent fixed bottom-right with gentle pulse)
  * - ScrollToTop (Auto-scroll to top on route navigation)
  */
-export default function App() {
+function AppRoutes() {
+  const { pathname } = useLocation();
+  const isAdminPath = pathname === "/admin" || pathname.startsWith("/admin/");
+
   return (
-    <BrowserRouter>
+    <>
       <ScrollToTop />
+      {isAdminPath ? (
+        <Routes>
+          <Route
+            path="/admin/*"
+            element={
+              <Suspense
+                fallback={
+                  <div className="flex min-h-screen items-center justify-center bg-ritora-teal text-ritora-sand">
+                    Loading admin…
+                  </div>
+                }
+              >
+                <AdminApp />
+              </Suspense>
+            }
+          />
+        </Routes>
+      ) : (
       <div className="min-h-screen flex flex-col bg-[#0C3332] text-white font-sans selection:bg-[#D9BA6A] selection:text-[#0C3332]">
         {/* Global Navigation Bar */}
         <Navbar />
@@ -47,8 +74,12 @@ export default function App() {
             <Route path="/projects" element={<Projects />} />
             <Route path="/investors" element={<Investors />} />
             <Route path="/developers" element={<Developers />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/sell-rent" element={<SellRent />} />
             <Route path="/locations" element={<Locations />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-and-conditions" element={<TermsConditions />} />
             {/* Legacy route redirects */}
             <Route path="/properties" element={<Navigate to="/projects" replace />} />
             <Route path="/properties/*" element={<Navigate to="/projects" replace />} />
@@ -63,6 +94,15 @@ export default function App() {
         {/* Persistent Floating WhatsApp Action Button */}
         <FloatingWhatsApp />
       </div>
+      )}
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AppRoutes />
     </BrowserRouter>
   );
 }

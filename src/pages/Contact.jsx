@@ -13,19 +13,12 @@ import {
 import { FaWhatsapp } from "react-icons/fa6";
 
 /**
- * Contact Page - Ritora Dubai Luxury Real Estate
+ * Contact Page - Ritora Luxe Real Estate LLC
  * Features a real, functional advisory contact form with:
- * - Name
- * - Phone/WhatsApp
- * - Email
- * - Role dropdown: Buyer / Investor / Developer
- * - Budget in AED
- * - Timeframe dropdown: Immediate / Within 30 Days / Prospecting
- * - Message textarea
- * - Client-side submission handling & interactive confirmation state
- * - Clear code comments for backend service integration
- * - Official contact credentials (email: info@ritoraluxerealestate.ae, phone: +971 58 575 8023)
- * - Address removed with client confirmation TODO comment
+ * - Name, Phone/WhatsApp, Email, Role dropdown, Budget in AED, Timeframe, Message
+ * - Saves submissions locally into localStorage ('ritora_enquiries')
+ * - Approved contact credentials (email: info@ritoraluxerealestate.ae, phone: +971 58 575 8023)
+ * - Operating hours: Monday to Saturday: 9:00 AM – 6:00 PM (GST)
  */
 export default function Contact() {
   const [searchParams] = useSearchParams();
@@ -69,10 +62,21 @@ export default function Contact() {
     e.preventDefault();
     setSubmitting(true);
 
-    // Simulate async submission
+    try {
+      const existing = JSON.parse(localStorage.getItem("ritora_enquiries") || "[]");
+      const submission = {
+        ...formData,
+        id: "ENQ-" + Date.now(),
+        source: "Contact Page",
+        submittedAt: new Date().toISOString(),
+      };
+      existing.unshift(submission);
+      localStorage.setItem("ritora_enquiries", JSON.stringify(existing));
+    } catch (err) {
+      console.warn("Storage error:", err);
+    }
+
     setTimeout(() => {
-      // TODO: Connect to backend/email service (e.g., EmailJS, Formspree, or custom API) once ready
-      console.log("Advisory Form Submission Received:", formData);
       setSubmitting(false);
       setSubmitted(true);
     }, 600);
@@ -94,9 +98,9 @@ export default function Contact() {
   const whatsappDirectUrl = "https://wa.me/971585758023?text=Hello%20Ritora%20advisory%20team%2C%20I%20would%20like%20to%20discuss%20Dubai%20property%20opportunities.";
 
   return (
-    <div className="bg-[#FAF8F5] text-[#0C3332] min-h-screen pt-24 sm:pt-28">
+    <div className="bg-[#FAF8F5] text-[#0C3332] min-h-screen">
       {/* 1. Header Banner */}
-      <section className="bg-[#0C3332] text-white py-16 sm:py-20 relative overflow-hidden">
+      <section className="bg-[#0C3332] text-white pt-28 pb-16 sm:pt-36 sm:pb-20 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[#D9BA6A] font-semibold mb-3">
@@ -346,8 +350,7 @@ export default function Contact() {
                   </div>
                 </div>
 
-                {/* Office Address Status */}
-                {/* // TODO: Add correct office address once provided by client */}
+                {/* Operating Hours */}
                 <div className="flex items-start gap-3.5 pt-2 border-t border-neutral-100">
                   <div className="w-10 h-10 rounded-lg bg-[#FAF8F5] border border-neutral-200 flex items-center justify-center text-[#0C3332] flex-shrink-0">
                     <Clock className="w-5 h-5 text-[#B89645]" />
@@ -357,7 +360,7 @@ export default function Contact() {
                       Operating Hours
                     </span>
                     <p className="text-sm font-medium text-neutral-700">
-                      Monday to Saturday: 9:00 AM – 7:00 PM (GST)
+                      Monday to Saturday: 9:00 AM – 6:00 PM (GST)
                     </p>
                     <p className="text-xs text-neutral-500 font-light mt-0.5">
                       Private meetings in Dubai arranged upon appointment.

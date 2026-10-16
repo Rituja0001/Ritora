@@ -1,5 +1,13 @@
 # React + Vite
 
+## Backend PostgreSQL
+
+The backend's example configuration uses PostgreSQL on `localhost:5432`. Copy
+`backend/.env.example` to `backend/.env`, then start the database with
+`docker compose --env-file backend/.env up -d`. If local PostgreSQL already
+occupies port 5432, stop it or set `POSTGRES_PORT=5433` in `backend/.env` and
+update `DATABASE_URL` to use `localhost:5433`.
+
 This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
 Currently, two official plugins are available:

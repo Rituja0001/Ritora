@@ -7,25 +7,20 @@ import InvestmentOpportunities from "../components/InvestmentOpportunities";
 import DeveloperPartnerships from "../components/DeveloperPartnerships";
 import LocationsSection from "../components/LocationsSection";
 import LeadershipSection from "../components/LeadershipSection";
-import Testimonials from "../components/Testimonials";
 import ContactSection from "../components/ContactSection";
 
 /**
  * Ritora Home Page
- * Built to the exact 10-section approved client flow:
- * 1. Hero Section (video object-cover, 2 CTAs)
- * 2. Credibility Numbers (StatsBar - 3 stats, no India stat)
- * 3. Featured Projects (details to follow soon, 6 cards with View Project & WhatsApp)
+ * Preserves the premium alternating visual rhythm and approved brand identity:
+ * 1. Hero Section (Dubai video background, dual CTAs)
+ * 2. HighlightsBar (3 company-focused highlights, no numerical claims)
+ * 3. Curated Project Opportunities Coming Soon (refined coming soon state)
  * 4. Why Ritora (4 advisory benchmark pillars)
- * 5. Investment Opportunities (4 pillars, Request a Consultation CTA)
- * 6. Developer Partnerships (5 capabilities, Partner With Ritora CTA)
- * 7. Locations (locations to follow shortly, 5 focus areas + expansion card)
- * 8. Leadership (Ritish Arora & Dhwani Arora, photo + bio placeholders)
- * 9. What Our Clients Say (Testimonials - smooth horizontal carousel with placeholder state)
- * 10. Contact Form Section (real functional form, official coordinates)
- *
- * Alternating visual rhythm: Dark -> Cream -> Dark -> Cream -> Dark -> Cream -> Dark -> Cream -> Dark -> Cream
- * All clickable buttons and internal links point to "#" per linking requirement.
+ * 5. Investment Opportunities (4 core investor pillars)
+ * 6. Developer Partnerships (5 strategic capabilities)
+ * 7. Focus Locations (5 prime areas, unverified yields removed)
+ * 8. Leadership (Dhwani Arora, Founder & Managing Director)
+ * 9. Direct Advisory Contact Form (functional consultation form)
  */
 export default function Home() {
   return (
@@ -33,10 +28,10 @@ export default function Home() {
       {/* 1. Hero Section (Dark) */}
       <Hero />
 
-      {/* 2. Credibility Numbers / StatsBar (Light Cream) */}
+      {/* 2. Company Highlights Bar (Light Cream) */}
       <StatsBar />
 
-      {/* 3. Featured Projects (Dark Teal) */}
+      {/* 3. Featured Projects - Coming Soon (Dark Teal) */}
       <FeaturedProjects />
 
       {/* 4. Why Ritora (Light Cream) */}
@@ -48,18 +43,14 @@ export default function Home() {
       {/* 6. Developer Partnerships (Light Cream) */}
       <DeveloperPartnerships />
 
-      {/* 7. Locations (Dark Teal) */}
+      {/* 7. Focus Locations (Dark Teal) */}
       <LocationsSection />
 
       {/* 8. Leadership (Light Cream) */}
       <LeadershipSection />
 
-      {/* 9. What Our Clients Say / Testimonials Carousel (Dark Teal) */}
-      <Testimonials />
-
-      {/* 10. Contact Form Section (Light Cream) */}
+      {/* 9. Contact Form Section (Dark Teal / Cream) */}
       <ContactSection />
     </div>
   );
 }
-

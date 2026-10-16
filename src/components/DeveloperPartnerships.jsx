@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Briefcase, Users2, Compass, Megaphone, TrendingUp, Sparkles, ArrowRight, Award } from "lucide-react";
 
 /**
@@ -7,7 +8,8 @@ import { Briefcase, Users2, Compass, Megaphone, TrendingUp, Sparkles, ArrowRight
  * Alternating rhythm: Sits between Dark Teal Investment Opportunities and Dark Teal Locations.
  * Features:
  * - 5 Strategic Capabilities: Sales strategy, Broker activation, Market positioning, Investor outreach, Lead generation and campaign execution
- * - CTA: "Partner With Ritora" pointing to href="#" per linking requirement
+ * - Streamlined, concise copy (Requirement 13)
+ * - Clear CTA: "Partner With Ritora" linking to /contact
  */
 export default function DeveloperPartnerships() {
   const capabilities = [
@@ -15,19 +17,19 @@ export default function DeveloperPartnerships() {
       icon: Briefcase,
       title: "Sales Strategy & Inventory Phasing",
       description:
-        "Developing structured release phases, unit mix optimization, and pricing escalation schedules that protect project GDV while driving continuous sales velocity.",
+        "Structuring release phases, unit mix optimization, and pricing escalation schedules to protect project GDV while driving continuous absorption.",
     },
     {
       icon: Users2,
-      title: "Broker Activation & Channel Management",
+      title: "Broker Activation & Channels",
       description:
         "Mobilizing top-tier regional and international agency networks through structured briefings, launch roadshows, and transparent incentive alignment.",
     },
     {
       icon: Compass,
-      title: "Market Positioning & Value Proposition",
+      title: "Market Positioning & Narrative",
       description:
-        "Articulating unique architectural and lifestyle differentiation in a competitive landscape, targeting verified buyer segments with tailored messaging.",
+        "Articulating unique architectural and lifestyle differentiation in a crowded market, targeting verified buyer segments with tailored messaging.",
     },
     {
       icon: Megaphone,
@@ -37,7 +39,7 @@ export default function DeveloperPartnerships() {
     },
     {
       icon: TrendingUp,
-      title: "Lead Generation & Campaign Execution",
+      title: "Lead Generation & Campaigns",
       description:
         "Data-driven digital acquisition pipelines and CRM conversion funnels, ensuring qualified buyer appointments directly with your sales gallery.",
     },
@@ -61,13 +63,13 @@ export default function DeveloperPartnerships() {
             </p>
           </div>
 
-          <a
-            href="#"
+          <Link
+            to="/contact"
             className="inline-flex items-center gap-2 px-6 py-3.5 bg-[#0C3332] hover:bg-[#154F4E] text-white text-xs uppercase tracking-[0.16em] font-bold rounded-sm shadow-sm transition-all duration-300 whitespace-nowrap self-start md:self-end"
           >
             <span>Partner With Ritora</span>
             <ArrowRight className="w-4 h-4" />
-          </a>
+          </Link>
         </div>
 
         {/* 5 Capabilities Grid + 6th Mandates Card */}
@@ -115,13 +117,13 @@ export default function DeveloperPartnerships() {
             </div>
 
             <div>
-              <a
-                href="#"
+              <Link
+                to="/contact"
                 className="w-full py-3 bg-[#D9BA6A] hover:bg-[#E5CE8F] text-[#0C3332] text-xs uppercase tracking-wider font-bold rounded-sm flex items-center justify-center gap-2 transition-colors"
               >
                 <span>Partner With Ritora</span>
                 <ArrowRight className="w-4 h-4" />
-              </a>
+              </Link>
             </div>
           </div>
         </div>

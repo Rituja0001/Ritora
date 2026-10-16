@@ -1,20 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { MapPin, Sparkles, ArrowRight, Info, Building2 } from "lucide-react";
+import { MapPin, Sparkles, ArrowRight, Building2 } from "lucide-react";
 import CTASection from "../components/CTASection";
 import { focusLocations } from "../data/locationsData";
 
 /**
- * Locations Page - Ritora Dubai Luxury Real Estate
- * Showcases initial focus districts across Dubai with investment thesis,
- * key highlights, and room for expanding future inventory.
- * Note: Project locations will be shared shortly.
+ * Locations Page - Ritora Luxe Real Estate LLC
+ * Showcases Dubai's key focus corridors with concise investment context.
+ * Unverified rental yields removed per client brief.
  */
 export default function Locations() {
   return (
-    <div className="bg-[#FAF8F5] text-[#0C3332] min-h-screen pt-24 sm:pt-28">
+    <div className="bg-[#FAF8F5] text-[#0C3332] min-h-screen">
       {/* 1. Header Banner */}
-      <section className="bg-[#0C3332] text-white py-16 sm:py-20 relative overflow-hidden">
+      <section className="bg-[#0C3332] text-white pt-28 pb-16 sm:pt-36 sm:pb-20 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[#D9BA6A] font-semibold mb-3">
@@ -25,25 +24,13 @@ export default function Locations() {
               Focus Locations
             </h1>
             <p className="text-neutral-200 text-sm sm:text-base lg:text-lg font-light leading-relaxed">
-              Explore Dubai's premier residential and high-yield investment corridors, from established urban centers to transformative mega-developments.
+              Explore Dubai's premier residential corridors, from established urban centers to transformative master developments.
             </p>
           </div>
         </div>
       </section>
 
-      {/* 2. Client Note Banner */}
-      <section className="bg-[#FAF8F5] border-b border-[#D9BA6A]/20 py-5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-start sm:items-center gap-3 p-4 bg-white rounded-lg border border-[#D9BA6A]/40 shadow-xs">
-            <Info className="w-5 h-5 text-[#B89645] flex-shrink-0 mt-0.5 sm:mt-0" />
-            <p className="text-xs sm:text-sm text-neutral-700 font-light">
-              <strong>Project locations will be shared shortly:</strong> Detailed project pins, site master plans, and nearby infrastructure roadmaps are currently being updated as developer releases are confirmed.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Locations Grid */}
+      {/* 2. Locations Grid */}
       <section className="py-14 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {focusLocations.map((loc) => (
@@ -96,8 +83,8 @@ export default function Locations() {
                   </div>
 
                   <div className="flex items-center justify-between pt-2">
-                    <span className="text-xs text-neutral-500 font-medium">
-                      Estimated Yield: <strong className="text-[#0C3332]">{loc.typicalYield}</strong>
+                    <span className="text-xs text-neutral-500 font-light">
+                      Prime Residential
                     </span>
 
                     <Link
@@ -113,16 +100,16 @@ export default function Locations() {
             </div>
           ))}
 
-          {/* Additional Placeholder Card for Future Inventory */}
+          {/* Additional Placeholder Card for Custom Locations */}
           <div className="bg-[#FAF8F5] rounded-xl p-8 border-2 border-dashed border-[#D9BA6A]/40 flex flex-col items-center justify-center text-center space-y-4">
             <div className="w-12 h-12 rounded-full bg-[#0C3332] text-[#D9BA6A] flex items-center justify-center">
               <Building2 className="w-6 h-6" />
             </div>
             <h3 className="font-serif text-xl font-bold text-[#0C3332]">
-              Expanding Location Coverage
+              Custom District Inquiries
             </h3>
             <p className="text-xs sm:text-sm text-neutral-600 font-light max-w-xs leading-relaxed">
-              New master developments across Jumeirah Village, Meydan, and waterfront islands will be added as official developer inventory expands.
+              Seeking opportunities in areas like Jumeirah, Downtown, or Dubai Marina? Our advisory desk provides custom comparative analysis.
             </p>
             <Link
               to="/contact"
@@ -134,11 +121,11 @@ export default function Locations() {
         </div>
       </section>
 
-      {/* 4. CTA Section */}
+      {/* 3. CTA Section */}
       <CTASection
         eyebrow="LOCATION ADVISORY"
         title="Unsure Which Dubai Community Best Fits Your Strategy?"
-        description="Our advisors provide comparative submarket analysis, examining capital growth forecasts, school access, and infrastructure development across all major Dubai master plans."
+        description="Our advisors provide comparative submarket analysis examining community amenities, connectivity, and development track records."
         primaryCtaText="Speak With an Advisor"
         primaryCtaLink="/contact"
       />

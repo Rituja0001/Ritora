@@ -1,22 +1,18 @@
 import React from "react";
-import { MapPin, Sparkles, ArrowRight, Building2, Info } from "lucide-react";
+import { Link } from "react-router-dom";
+import { MapPin, Sparkles, ArrowRight, Building2 } from "lucide-react";
 import { focusLocations } from "../data/locationsData";
 
 /**
- * LocationsSection Component (Section 7)
- * Background: Dark Teal (#0C3332)
- * Alternating rhythm: Sits between Light Cream Developer Partnerships and Light Cream Leadership.
- * Features:
- * - "locations to follow shortly" placeholder note
- * - 5 initial focus areas (Dubai South, Business Bay, Dubai Hills Estate, Palm Jebel Ali, Dubai Creek Harbour) + expansion card
- * - Inquire buttons pointing to href="#" per linking requirement
+ * LocationsSection Component (Home Page Section 7)
+ * Displays approved prime Dubai focus districts without unverified yield claims.
  */
 export default function LocationsSection() {
   return (
     <section id="locations" className="py-16 sm:py-20 lg:py-24 bg-[#0C3332] text-white relative z-10 border-b border-[#D9BA6A]/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-12 gap-6">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[#D9BA6A] font-semibold mb-2.5">
               <Sparkles className="w-3.5 h-3.5" />
@@ -26,17 +22,17 @@ export default function LocationsSection() {
               Focus Locations
             </h2>
             <p className="text-neutral-300 text-xs sm:text-sm md:text-base mt-2 font-light leading-relaxed">
-              Explore Dubai's premier residential and high-yield investment corridors, from established urban centers to transformative mega-developments.
+              Explore Dubai's premier residential corridors, from established urban centers to transformative master developments.
             </p>
           </div>
-        </div>
 
-        {/* Placeholder Note Banner */}
-        <div className="flex items-center gap-3 p-4 bg-[#082221] rounded-xl border border-[#D9BA6A]/30 mb-10 shadow-xs">
-          <Info className="w-5 h-5 text-[#D9BA6A] flex-shrink-0" />
-          <p className="text-xs sm:text-sm text-neutral-300 font-light">
-            <strong>Project locations will be shared shortly:</strong> Detailed project pins, master plans, and nearby infrastructure roadmaps are currently being updated as developer releases are confirmed.
-          </p>
+          <Link
+            to="/locations"
+            className="inline-flex items-center gap-2 text-xs uppercase tracking-wider text-[#D9BA6A] hover:text-[#E5CE8F] font-semibold transition-colors"
+          >
+            <span>View All Focus Areas</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
 
         {/* 5 Focus Areas Grid + Expansion Card */}
@@ -54,7 +50,7 @@ export default function LocationsSection() {
                   loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
 
                 <div className="absolute bottom-3 left-4 right-4 text-white">
                   <div className="flex items-center gap-1.5 text-xs text-[#D9BA6A] font-medium mb-0.5">
@@ -91,17 +87,17 @@ export default function LocationsSection() {
                   </div>
 
                   <div className="flex items-center justify-between pt-2">
-                    <span className="text-xs text-neutral-400 font-medium">
-                      Estimated Yield: <strong className="text-[#D9BA6A]">{loc.typicalYield}</strong>
+                    <span className="text-xs text-neutral-400 font-light">
+                      Prime Residential
                     </span>
 
-                    <a
-                      href="#"
+                    <Link
+                      to={`/contact?location=${encodeURIComponent(loc.name)}`}
                       className="inline-flex items-center gap-1 text-xs uppercase tracking-wider font-semibold text-[#D9BA6A] hover:text-[#E5CE8F] transition-colors"
                     >
                       <span>Inquire</span>
                       <ArrowRight className="w-3.5 h-3.5" />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -119,12 +115,12 @@ export default function LocationsSection() {
             <p className="text-xs sm:text-sm text-neutral-300 font-light max-w-xs leading-relaxed">
               New master developments across Jumeirah Village, Meydan, and waterfront islands will be added as official developer inventory expands.
             </p>
-            <a
-              href="#"
-              className="px-4 py-2 border border-[#D9BA6A] text-[#D9BA6A] hover:bg-[#D9BA6A] hover:text-[#0C3332] text-xs uppercase tracking-wider font-semibold rounded-sm transition-colors"
+            <Link
+              to="/contact"
+              className="px-5 py-2.5 border border-[#D9BA6A] text-[#D9BA6A] hover:bg-[#D9BA6A] hover:text-[#0C3332] text-xs uppercase tracking-wider font-semibold rounded-sm transition-colors"
             >
               Custom Inquiries
-            </a>
+            </Link>
           </div>
         </div>
       </div>

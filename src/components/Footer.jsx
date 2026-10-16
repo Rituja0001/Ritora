@@ -1,28 +1,45 @@
 import React, { useState } from "react";
-import { Mail, Phone, ArrowRight, CheckCircle2, MessageSquare } from "lucide-react";
-import { FaInstagram, FaLinkedinIn, FaFacebookF, FaYoutube } from "react-icons/fa6";
+import { Link } from "react-router-dom";
+import { Mail, Phone, ArrowRight, CheckCircle2, MessageSquare, Clock } from "lucide-react";
 import logoImg from "../assets/Images/logo (3).png";
 
 /**
- * Footer Component for Ritora Luxury Dubai Real Estate
+ * Footer Component for Ritora Luxe Real Estate LLC
  * Features:
- * - All clickable links point to href="#" per linking requirement
- * - Corrected email: info@ritoraluxerealestate.ae
- * - Corrected phone/WhatsApp: +971 58 575 8023
- * - Address removed with TODO placeholder comment
- * - Registered legal name with client confirmation TODO comment
- * - Social icons and property briefings subscription strip
+ * - Approved legal name: Ritora Luxe Real Estate LLC
+ * - Approved contact coordinates: info@ritoraluxerealestate.ae & +971 58 575 8023
+ * - Operating hours: Monday to Saturday: 9:00 AM – 6:00 PM (GST)
+ * - Navigation links pointing cleanly to internal React Router pages (no href="#")
+ * - Unconfirmed social links hidden
+ * - Real property briefings newsletter form with email validation, duplicate prevention, and localStorage persistence
  */
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleSubscribe = (e) => {
     e.preventDefault();
-    if (email.trim()) {
+    const cleanEmail = email.trim().toLowerCase();
+    if (!cleanEmail || !cleanEmail.includes("@")) {
+      setErrorMsg("Please enter a valid email address.");
+      return;
+    }
+
+    try {
+      const existing = JSON.parse(localStorage.getItem("ritora_newsletter_subscribers") || "[]");
+      if (!existing.includes(cleanEmail)) {
+        existing.push(cleanEmail);
+        localStorage.setItem("ritora_newsletter_subscribers", JSON.stringify(existing));
+      }
+      setSubscribed(true);
+      setErrorMsg("");
+      setEmail("");
+      setTimeout(() => setSubscribed(false), 6000);
+    } catch (err) {
+      console.warn("Newsletter storage error:", err);
       setSubscribed(true);
       setEmail("");
-      setTimeout(() => setSubscribed(false), 5000);
     }
   };
 
@@ -46,29 +63,37 @@ export default function Footer() {
 
             <div className="lg:col-span-6">
               {subscribed ? (
-                <div className="flex items-center gap-3 p-3.5 bg-[#D9BA6A]/10 border border-[#D9BA6A]/40 text-[#D9BA6A] rounded-sm">
+                <div className="flex items-center gap-3 p-3.5 bg-[#D9BA6A]/10 border border-[#D9BA6A]/40 text-[#D9BA6A] rounded-sm animate-in fade-in">
                   <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
                   <span className="text-xs sm:text-sm font-medium">
-                    Thank you. Your briefing subscription has been received.
+                    Thank you. Your briefing subscription has been confirmed.
                   </span>
                 </div>
               ) : (
-                <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 w-full">
-                  <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email address..."
-                    className="flex-1 min-h-[44px] bg-[#0C3332] border border-[#D9BA6A]/30 px-4 py-2.5 text-white placeholder-neutral-400 text-xs sm:text-sm focus:outline-none focus:border-[#D9BA6A] transition-colors rounded-sm w-full"
-                  />
-                  <button
-                    type="submit"
-                    className="w-full sm:w-auto min-h-[44px] px-6 py-2.5 bg-[#D9BA6A] hover:bg-[#E5CE8F] text-[#0C3332] text-xs uppercase tracking-[0.16em] font-bold flex items-center justify-center gap-2 transition-colors whitespace-nowrap shadow-sm rounded-sm"
-                  >
-                    <span>Subscribe</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
+                <form onSubmit={handleSubscribe} className="space-y-2">
+                  <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 w-full">
+                    <input
+                      type="email"
+                      required
+                      value={email}
+                      onChange={(e) => {
+                        setEmail(e.target.value);
+                        if (errorMsg) setErrorMsg("");
+                      }}
+                      placeholder="Enter your email address..."
+                      className="flex-1 min-h-[44px] bg-[#0C3332] border border-[#D9BA6A]/30 px-4 py-2.5 text-white placeholder-neutral-400 text-xs sm:text-sm focus:outline-none focus:border-[#D9BA6A] transition-colors rounded-sm w-full"
+                    />
+                    <button
+                      type="submit"
+                      className="w-full sm:w-auto min-h-[44px] px-6 py-2.5 bg-[#D9BA6A] hover:bg-[#E5CE8F] text-[#0C3332] text-xs uppercase tracking-[0.16em] font-bold flex items-center justify-center gap-2 transition-colors whitespace-nowrap shadow-sm rounded-sm"
+                    >
+                      <span>Subscribe</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                  {errorMsg && (
+                    <p className="text-xs text-red-400 font-light">{errorMsg}</p>
+                  )}
                 </form>
               )}
             </div>
@@ -78,144 +103,126 @@ export default function Footer() {
 
       {/* 2. Main Footer Links */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 sm:gap-10">
-          {/* Brand Info */}
-          <div className="sm:col-span-2 lg:col-span-2 space-y-4">
-            <a href="#" className="inline-block">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10">
+          {/* Brand Info (col 1-4) */}
+          <div className="sm:col-span-2 lg:col-span-4 space-y-4">
+            <Link to="/" className="inline-block">
               <img
                 src={logoImg}
-                alt="Ritora Luxe Real Estate"
+                alt="Ritora Luxe Real Estate LLC"
                 className="h-9 sm:h-11 w-auto object-contain"
               />
-            </a>
+            </Link>
 
             <p className="text-neutral-300 text-xs sm:text-sm leading-relaxed max-w-sm font-light">
               Boutique real estate advisory and developer sales expertise guiding clients and partners through considered property opportunities across Dubai.
             </p>
 
-            {/* Social Icons pointing to # */}
-            <div className="pt-2 flex items-center space-x-3">
-              <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-[#0C3332] border border-[#D9BA6A]/40 flex items-center justify-center text-[#D9BA6A] hover:bg-[#D9BA6A] hover:text-[#0C3332] transition-all duration-300 shadow-sm"
-                aria-label="Instagram"
-              >
-                <FaInstagram className="w-4 h-4" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-[#0C3332] border border-[#D9BA6A]/40 flex items-center justify-center text-[#D9BA6A] hover:bg-[#D9BA6A] hover:text-[#0C3332] transition-all duration-300 shadow-sm"
-                aria-label="LinkedIn"
-              >
-                <FaLinkedinIn className="w-4 h-4" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-[#0C3332] border border-[#D9BA6A]/40 flex items-center justify-center text-[#D9BA6A] hover:bg-[#D9BA6A] hover:text-[#0C3332] transition-all duration-300 shadow-sm"
-                aria-label="Facebook"
-              >
-                <FaFacebookF className="w-3.5 h-3.5" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-[#0C3332] border border-[#D9BA6A]/40 flex items-center justify-center text-[#D9BA6A] hover:bg-[#D9BA6A] hover:text-[#0C3332] transition-all duration-300 shadow-sm"
-                aria-label="YouTube"
-              >
-                <FaYoutube className="w-4 h-4" />
-              </a>
+            <div className="pt-2 text-xs text-neutral-400 space-y-1">
+              <p className="font-semibold text-neutral-300">Ritora Luxe Real Estate LLC</p>
+              <p>Licensed Dubai Real Estate Advisory & Brokerage</p>
             </div>
           </div>
 
-          {/* Quick Navigation Links pointing to # */}
-          <div>
+          {/* Quick Navigation Links (col 5-7) */}
+          <div className="lg:col-span-3">
             <h4 className="text-xs uppercase tracking-[0.2em] text-[#D9BA6A] font-semibold mb-3 sm:mb-4 border-b border-[#D9BA6A]/20 pb-2">
-              Navigation
+              Advisory Navigation
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <a href="#" className="text-neutral-300 hover:text-[#D9BA6A] transition-colors">
+                <Link to="/" className="text-neutral-300 hover:text-[#D9BA6A] transition-colors">
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-neutral-300 hover:text-[#D9BA6A] transition-colors">
+                <Link to="/about" className="text-neutral-300 hover:text-[#D9BA6A] transition-colors">
                   About & Leadership
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-neutral-300 hover:text-[#D9BA6A] transition-colors">
-                  Featured Projects
-                </a>
+                <Link to="/projects" className="text-neutral-300 hover:text-[#D9BA6A] transition-colors">
+                  Curated Projects
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-neutral-300 hover:text-[#D9BA6A] transition-colors">
+                <Link to="/investors" className="text-neutral-300 hover:text-[#D9BA6A] transition-colors">
                   Investment Opportunities
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-neutral-300 hover:text-[#D9BA6A] transition-colors">
+                <Link to="/developers" className="text-neutral-300 hover:text-[#D9BA6A] transition-colors">
                   Developer Partnerships
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-neutral-300 hover:text-[#D9BA6A] transition-colors">
-                  Locations
-                </a>
+                <Link to="/services" className="text-neutral-300 hover:text-[#D9BA6A] transition-colors">
+                  Advisory Services
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-neutral-300 hover:text-[#D9BA6A] transition-colors">
-                  Contact
-                </a>
+                <Link to="/sell-rent" className="text-neutral-300 hover:text-[#D9BA6A] transition-colors">
+                  Sell or Lease With Us
+                </Link>
+              </li>
+              <li>
+                <Link to="/locations" className="text-neutral-300 hover:text-[#D9BA6A] transition-colors">
+                  Focus Locations
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="text-neutral-300 hover:text-[#D9BA6A] transition-colors">
+                  Contact Advisory Desk
+                </Link>
               </li>
             </ul>
           </div>
 
-          {/* Focus Locations pointing to # */}
-          <div>
+          {/* Focus Locations (col 8-9) */}
+          <div className="lg:col-span-2">
             <h4 className="text-xs uppercase tracking-[0.2em] text-[#D9BA6A] font-semibold mb-3 sm:mb-4 border-b border-[#D9BA6A]/20 pb-2">
               Focus Areas
             </h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <a href="#" className="text-neutral-300 hover:text-[#D9BA6A] transition-colors">
+                <Link to="/locations" className="text-neutral-300 hover:text-[#D9BA6A] transition-colors">
                   Dubai South
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-neutral-300 hover:text-[#D9BA6A] transition-colors">
+                <Link to="/locations" className="text-neutral-300 hover:text-[#D9BA6A] transition-colors">
                   Business Bay
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-neutral-300 hover:text-[#D9BA6A] transition-colors">
+                <Link to="/locations" className="text-neutral-300 hover:text-[#D9BA6A] transition-colors">
                   Dubai Hills Estate
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-neutral-300 hover:text-[#D9BA6A] transition-colors">
+                <Link to="/locations" className="text-neutral-300 hover:text-[#D9BA6A] transition-colors">
                   Palm Jebel Ali
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-neutral-300 hover:text-[#D9BA6A] transition-colors">
+                <Link to="/locations" className="text-neutral-300 hover:text-[#D9BA6A] transition-colors">
                   Dubai Creek Harbour
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
 
-          {/* Reach Out to Us (Address pending client) */}
-          <div className="sm:col-span-2 lg:col-span-1">
+          {/* Reach Out to Us (col 10-12) */}
+          <div className="sm:col-span-2 lg:col-span-3">
             <h4 className="text-xs uppercase tracking-[0.2em] text-[#D9BA6A] font-semibold mb-3 sm:mb-4 border-b border-[#D9BA6A]/20 pb-2">
-              Reach Out to Us
+              Direct Contact
             </h4>
             <div className="space-y-3 text-xs">
-              {/* // TODO: Add correct office address once provided by client */}
               <p className="flex items-center gap-2.5 text-neutral-200">
                 <Phone className="w-4 h-4 text-[#D9BA6A] flex-shrink-0" />
                 <a
-                  href="#"
-                  className="hover:text-[#D9BA6A] transition-colors"
+                  href="tel:+971585758023"
+                  className="hover:text-[#D9BA6A] transition-colors font-medium"
                 >
                   +971 58 575 8023
                 </a>
@@ -223,33 +230,45 @@ export default function Footer() {
               <p className="flex items-center gap-2.5 text-neutral-200">
                 <Mail className="w-4 h-4 text-[#D9BA6A] flex-shrink-0" />
                 <a
-                  href="#"
+                  href="mailto:info@ritoraluxerealestate.ae"
                   className="hover:text-[#D9BA6A] transition-colors break-all"
                 >
                   info@ritoraluxerealestate.ae
                 </a>
               </p>
-              <div className="pt-2">
-                <a
-                  href="#"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#0C3332] text-[#D9BA6A] border border-[#D9BA6A]/40 rounded-sm text-[11px] font-semibold hover:bg-[#D9BA6A] hover:text-[#0C3332] transition-colors"
+              <p className="flex items-start gap-2.5 text-neutral-300 pt-1">
+                <Clock className="w-4 h-4 text-[#D9BA6A] flex-shrink-0 mt-0.5" />
+                <span>Monday to Saturday: 9:00 AM – 6:00 PM (GST)</span>
+              </p>
+              <div className="pt-3">
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-[#0C3332] text-[#D9BA6A] border border-[#D9BA6A]/40 rounded-sm text-[11px] font-semibold hover:bg-[#D9BA6A] hover:text-[#0C3332] transition-colors"
                 >
-                  <MessageSquare className="w-3 h-3" />
+                  <MessageSquare className="w-3.5 h-3.5" />
                   <span>Send Advisory Message</span>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Regulatory Disclaimer & Copyright */}
+        {/* Regulatory Disclaimer, Legal Links & Copyright */}
         <div className="mt-10 sm:mt-12 pt-6 border-t border-[#D9BA6A]/15 flex flex-col md:flex-row items-center justify-between text-[11px] sm:text-xs text-neutral-400 gap-4 text-center md:text-left">
           <div>
             Dubai Real Estate Advisory & Brokerage | Dubai, United Arab Emirates
           </div>
+          <div className="flex items-center gap-4 text-neutral-400">
+            <Link to="/privacy-policy" className="hover:text-[#D9BA6A] transition-colors">
+              Privacy Policy
+            </Link>
+            <span>&bull;</span>
+            <Link to="/terms-and-conditions" className="hover:text-[#D9BA6A] transition-colors">
+              Terms & Conditions
+            </Link>
+          </div>
           <div>
-            {/* // TODO: Confirm and update exact registered legal entity name with client */}
-            &copy; {new Date().getFullYear()} Ritora Luxe Real Estate [Registered Legal Entity Name Pending Confirmation]. All rights reserved.
+            &copy; {new Date().getFullYear()} Ritora Luxe Real Estate LLC. All rights reserved.
           </div>
         </div>
       </div>

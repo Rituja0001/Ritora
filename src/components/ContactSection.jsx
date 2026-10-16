@@ -1,16 +1,17 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Mail, Phone, Clock, Send, CheckCircle2, Sparkles } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa6";
 
 /**
  * ContactSection Component (Section 10)
  * Background: Light Cream (#FAF8F5)
- * Alternating rhythm: Sits between Dark Teal Testimonials and Deep Teal Footer.
+ * Alternating rhythm: Sits between Dark Teal Locations and Deep Teal Footer.
  * Features:
- * - Real, functional consultation request form with required fields:
- *   Name, Phone/WhatsApp, Email, Role dropdown, Budget in AED, Timeframe dropdown, Message
- * - Submit state simulation with confirmation feedback
- * - Official coordinates with TODO for physical address
+ * - Real, functional consultation request form with required fields
+ * - Saves submission to localStorage ('ritora_enquiries') and handles state
+ * - Official coordinates: info@ritoraluxerealestate.ae & +971 58 575 8023
+ * - Hours: Monday to Saturday: 9:00 AM – 6:00 PM (GST)
  */
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -35,9 +36,21 @@ export default function ContactSection() {
     e.preventDefault();
     setSubmitting(true);
 
+    try {
+      const existing = JSON.parse(localStorage.getItem("ritora_enquiries") || "[]");
+      const submission = {
+        ...formData,
+        id: "ENQ-" + Date.now(),
+        source: "Homepage Contact Section",
+        submittedAt: new Date().toISOString(),
+      };
+      existing.unshift(submission);
+      localStorage.setItem("ritora_enquiries", JSON.stringify(existing));
+    } catch (err) {
+      console.warn("Storage error:", err);
+    }
+
     setTimeout(() => {
-      // TODO: Connect to backend/email service (e.g., EmailJS, Formspree, or custom API) once ready
-      console.log("Advisory Form Submission Received:", formData);
       setSubmitting(false);
       setSubmitted(true);
     }, 600);
@@ -55,6 +68,8 @@ export default function ContactSection() {
       message: "",
     });
   };
+
+  const whatsappDirectUrl = "https://wa.me/971585758023?text=Hello%20Ritora%20advisory%20team%2C%20I%20would%20like%20to%20discuss%20Dubai%20property%20opportunities.";
 
   return (
     <section id="contact" className="py-16 sm:py-20 lg:py-24 bg-[#FAF8F5] text-[#0C3332] relative z-10 border-b border-[#D9BA6A]/20">
@@ -276,7 +291,7 @@ export default function ContactSection() {
                       Telephone / WhatsApp
                     </span>
                     <a
-                      href="#"
+                      href="tel:+971585758023"
                       className="font-medium text-sm text-[#0C3332] hover:text-[#B89645] transition-colors"
                     >
                       +971 58 575 8023
@@ -294,7 +309,7 @@ export default function ContactSection() {
                       Advisory Desk Email
                     </span>
                     <a
-                      href="#"
+                      href="mailto:info@ritoraluxerealestate.ae"
                       className="font-medium text-sm text-[#0C3332] hover:text-[#B89645] transition-colors break-all"
                     >
                       info@ritoraluxerealestate.ae
@@ -303,7 +318,6 @@ export default function ContactSection() {
                 </div>
 
                 {/* Operating Hours */}
-                {/* // TODO: Add correct office address once provided by client */}
                 <div className="flex items-start gap-3.5 pt-2 border-t border-neutral-100">
                   <div className="w-10 h-10 rounded-xl bg-[#FAF8F5] border border-neutral-200 flex items-center justify-center text-[#0C3332] flex-shrink-0">
                     <Clock className="w-5 h-5 text-[#B89645]" />
@@ -313,7 +327,7 @@ export default function ContactSection() {
                       Operating Hours
                     </span>
                     <p className="text-sm font-medium text-neutral-700">
-                      Monday to Saturday: 9:00 AM – 7:00 PM (GST)
+                      Monday to Saturday: 9:00 AM – 6:00 PM (GST)
                     </p>
                     <p className="text-xs text-neutral-500 font-light mt-0.5">
                       Private meetings in Dubai arranged upon appointment.
@@ -325,7 +339,9 @@ export default function ContactSection() {
               {/* Direct WhatsApp Action Box */}
               <div className="pt-4 border-t border-neutral-100">
                 <a
-                  href="#"
+                  href={whatsappDirectUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-full py-3.5 px-4 bg-[#25D366] hover:bg-[#20ba59] text-white rounded-md text-xs uppercase tracking-wider font-bold flex items-center justify-center gap-2 shadow-sm transition-all"
                 >
                   <FaWhatsapp className="w-5 h-5" />
