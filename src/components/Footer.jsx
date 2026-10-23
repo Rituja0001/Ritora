@@ -15,6 +15,7 @@ import logoImg from "../assets/Images/logo (3).png";
  */
 export default function Footer() {
   const [email, setEmail] = useState("");
+  const [consent, setConsent] = useState(false);
   const [subscribed, setSubscribed] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
@@ -26,15 +27,28 @@ export default function Footer() {
       return;
     }
 
+    if (!consent) {
+      setErrorMsg("Please accept the privacy policy to subscribe.");
+      return;
+    }
+
     try {
       const existing = JSON.parse(localStorage.getItem("ritora_newsletter_subscribers") || "[]");
-      if (!existing.includes(cleanEmail)) {
-        existing.push(cleanEmail);
+      const subscriberEntry = {
+        email: cleanEmail,
+        subscribedAt: new Date().toISOString(),
+        consent: true,
+      };
+      
+      const alreadySubscribed = existing.some(item => (typeof item === 'string' ? item : item.email) === cleanEmail);
+      if (!alreadySubscribed) {
+        existing.push(subscriberEntry);
         localStorage.setItem("ritora_newsletter_subscribers", JSON.stringify(existing));
       }
       setSubscribed(true);
       setErrorMsg("");
       setEmail("");
+      setConsent(false);
       setTimeout(() => setSubscribed(false), 6000);
     } catch (err) {
       console.warn("Newsletter storage error:", err);
@@ -91,6 +105,25 @@ export default function Footer() {
                       <ArrowRight className="w-4 h-4" />
                     </button>
                   </div>
+                  <div className="flex items-start gap-2 pt-1 text-left">
+                    <input
+                      type="checkbox"
+                      id="newsletter-consent"
+                      checked={consent}
+                      onChange={(e) => {
+                        setConsent(e.target.checked);
+                        if (errorMsg) setErrorMsg("");
+                      }}
+                      className="mt-0.5 h-3.5 w-3.5 rounded border-[#D9BA6A]/40 bg-[#0C3332] text-[#D9BA6A] focus:ring-0 focus:ring-offset-0 cursor-pointer"
+                    />
+                    <label htmlFor="newsletter-consent" className="text-[11px] text-neutral-400 font-light cursor-pointer select-none">
+                      I agree to the{" "}
+                      <Link to="/privacy-policy" className="text-[#D9BA6A] underline hover:text-[#E5CE8F]">
+                        Privacy Policy
+                      </Link>{" "}
+                      and consent to receiving property briefings.
+                    </label>
+                  </div>
                   {errorMsg && (
                     <p className="text-xs text-red-400 font-light">{errorMsg}</p>
                   )}
@@ -120,7 +153,7 @@ export default function Footer() {
 
             <div className="pt-2 text-xs text-neutral-400 space-y-1">
               <p className="font-semibold text-neutral-300">Ritora Luxe Real Estate LLC</p>
-              <p>Licensed Dubai Real Estate Advisory & Brokerage</p>
+              <p>Boutique Real Estate Advisory</p>
             </div>
           </div>
 
@@ -256,7 +289,7 @@ export default function Footer() {
         {/* Regulatory Disclaimer, Legal Links & Copyright */}
         <div className="mt-10 sm:mt-12 pt-6 border-t border-[#D9BA6A]/15 flex flex-col md:flex-row items-center justify-between text-[11px] sm:text-xs text-neutral-400 gap-4 text-center md:text-left">
           <div>
-            Dubai Real Estate Advisory & Brokerage | Dubai, United Arab Emirates
+            Boutique Dubai Real Estate Advisory | Dubai, United Arab Emirates
           </div>
           <div className="flex items-center gap-4 text-neutral-400">
             <Link to="/privacy-policy" className="hover:text-[#D9BA6A] transition-colors">

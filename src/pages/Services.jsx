@@ -173,7 +173,7 @@ export default function Services() {
                 Custom Advisory Mandate
               </h3>
               <p className="text-neutral-300 text-xs sm:text-sm leading-relaxed font-light mb-6">
-                Have a specialized acquisition, developer assignment, or cross-border transaction in mind? Our principals are available for confidential consultations.
+                Have a specialized acquisition, developer assignment, or cross-border transaction in mind? Our Managing Director and advisory team are available for confidential consultations.
               </p>
             </div>
 

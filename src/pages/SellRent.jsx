@@ -38,14 +38,15 @@ export default function SellRent() {
     bedrooms: "2 Beds",
     expectedPrice: "",
     message: "",
+    consent: false,
   });
 
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: type === "checkbox" ? checked : value }));
   };
 
   const handleSubmit = (e) => {
@@ -83,6 +84,7 @@ export default function SellRent() {
       bedrooms: "2 Beds",
       expectedPrice: "",
       message: "",
+      consent: false,
     });
   };
 
@@ -306,6 +308,26 @@ export default function SellRent() {
                     placeholder="e.g. 1,450 sq.ft, currently rented until August, high floor with open views..."
                     className="w-full px-4 py-3 bg-[#FAF8F5] border border-neutral-300 rounded-md text-sm text-[#0C3332] focus:outline-none focus:border-[#D9BA6A] focus:bg-white transition-all resize-y"
                   />
+                </div>
+
+                {/* Privacy Consent Checkbox */}
+                <div className="flex items-start gap-2.5 pt-1">
+                  <input
+                    type="checkbox"
+                    id="owner-contact-consent"
+                    name="consent"
+                    required
+                    checked={formData.consent}
+                    onChange={handleChange}
+                    className="mt-1 h-4 w-4 rounded border-neutral-300 text-[#0C3332] focus:ring-[#D9BA6A] cursor-pointer"
+                  />
+                  <label htmlFor="owner-contact-consent" className="text-xs text-neutral-600 font-light leading-relaxed cursor-pointer select-none">
+                    I consent to Ritora Luxe Real Estate processing my property and contact details in accordance with the{" "}
+                    <Link to="/privacy-policy" className="text-[#0C3332] font-medium underline hover:text-[#B89645]">
+                      Privacy Policy
+                    </Link>
+                    . <span className="text-red-500">*</span>
+                  </label>
                 </div>
 
                 {/* Submit button */}

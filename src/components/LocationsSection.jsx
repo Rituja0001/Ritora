@@ -43,11 +43,24 @@ export default function LocationsSection() {
               className="bg-[#082221] rounded-2xl overflow-hidden border border-[#D9BA6A]/25 hover:border-[#D9BA6A]/60 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
             >
               {/* Image with Tagline Overlay */}
-              <div className="relative aspect-[16/10] overflow-hidden bg-neutral-900">
+              <div className="relative aspect-[16/10] overflow-hidden bg-neutral-800">
                 <img
                   src={loc.image}
                   alt={loc.name}
                   loading="lazy"
+                  onError={(e) => {
+                    // Fallback to Unsplash if local image fails
+                    const fallbacks = {
+                      "dubai-south": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1000&q=80",
+                      "business-bay": "https://images.unsplash.com/photo-1546412414-e1885259563a?auto=format&fit=crop&w=1000&q=80",
+                      "dubai-hills-estate": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80",
+                      "palm-jebel-ali": "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1000&q=80",
+                      "dubai-creek-harbour": "https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&w=1000&q=80"
+                    };
+                    if (fallbacks[loc.id] && e.target.src !== fallbacks[loc.id]) {
+                      e.target.src = fallbacks[loc.id];
+                    }
+                  }}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />

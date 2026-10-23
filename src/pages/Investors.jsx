@@ -216,7 +216,7 @@ export default function Investors() {
       <CTASection
         eyebrow="PORTFOLIO CONSULTATION"
         title="Schedule an Investor Discussion"
-        description="Speak with our principals to review upcoming off-plan launches, pricing tiers, and tailored allocation strategies."
+        description="Speak with our Managing Director and advisory team to review upcoming off-plan launches, pricing tiers, and tailored allocation strategies."
         primaryCtaText="Request a Consultation"
         primaryCtaLink="/contact"
       />

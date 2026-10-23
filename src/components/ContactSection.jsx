@@ -22,14 +22,15 @@ export default function ContactSection() {
     budget: "",
     timeframe: "Immediate",
     message: "",
+    consent: false,
   });
 
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: type === "checkbox" ? checked : value }));
   };
 
   const handleSubmit = (e) => {
@@ -66,6 +67,7 @@ export default function ContactSection() {
       budget: "",
       timeframe: "Immediate",
       message: "",
+      consent: false,
     });
   };
 
@@ -84,7 +86,7 @@ export default function ContactSection() {
             Speak With an Advisor
           </h2>
           <p className="text-neutral-600 text-sm sm:text-base mt-2 font-light leading-relaxed">
-            Whether you are assessing off-plan allocations, seeking a private residence, or exploring developer representation, our principals provide considered counsel.
+            Whether you are assessing off-plan allocations, seeking a private residence, or exploring developer representation, our Managing Director and advisory team provide considered counsel.
           </p>
         </div>
 
@@ -244,6 +246,26 @@ export default function ContactSection() {
                   />
                 </div>
 
+                {/* Privacy Consent Checkbox */}
+                <div className="flex items-start gap-2.5 pt-1">
+                  <input
+                    type="checkbox"
+                    id="home-contact-consent"
+                    name="consent"
+                    required
+                    checked={formData.consent}
+                    onChange={handleChange}
+                    className="mt-1 h-4 w-4 rounded border-neutral-300 text-[#0C3332] focus:ring-[#D9BA6A] cursor-pointer"
+                  />
+                  <label htmlFor="home-contact-consent" className="text-xs text-neutral-600 font-light leading-relaxed cursor-pointer select-none">
+                    I consent to Ritora Luxe Real Estate collecting and processing my contact details in accordance with the{" "}
+                    <Link to="/privacy-policy" className="text-[#0C3332] font-medium underline hover:text-[#B89645]">
+                      Privacy Policy
+                    </Link>
+                    . <span className="text-red-500">*</span>
+                  </label>
+                </div>
+
                 {/* Submit button */}
                 <div className="pt-2">
                   <button
@@ -350,10 +372,10 @@ export default function ContactSection() {
               </div>
             </div>
 
-            {/* Advisory Note */}
+            {/* Advisory Commitment Box */}
             <div className="bg-[#0C3332] text-white rounded-2xl p-7 border border-[#D9BA6A]/40 space-y-2.5">
               <h4 className="font-serif text-lg font-bold text-white">
-                Independent Advisory Guarantee
+                Independent Advisory Commitment
               </h4>
               <p className="text-xs text-neutral-300 font-light leading-relaxed">
                 Ritora operates as an uncompromised boutique advisory. Our evaluations prioritize project fundamentals, developer pedigree, and realistic exit potential rather than high-volume sales targets.

@@ -31,6 +31,7 @@ export default function Contact() {
     budget: "",
     timeframe: "Immediate",
     message: "",
+    consent: false,
   });
 
   const [submitted, setSubmitted] = useState(false);
@@ -54,8 +55,8 @@ export default function Contact() {
   }, [searchParams]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: type === "checkbox" ? checked : value }));
   };
 
   const handleSubmit = (e) => {
@@ -92,6 +93,7 @@ export default function Contact() {
       budget: "",
       timeframe: "Immediate",
       message: "",
+      consent: false,
     });
   };
 
@@ -111,7 +113,7 @@ export default function Contact() {
               Speak With an Advisor
             </h1>
             <p className="text-neutral-200 text-sm sm:text-base lg:text-lg font-light leading-relaxed">
-              Whether you are an investor assessing off-plan allocations, a private buyer seeking a residence, or a developer exploring sales representation, our team provides considered counsel.
+              Whether you are an investor assessing off-plan allocations, a private buyer seeking a residence, or a developer exploring sales representation, our Managing Director and advisory team provide considered counsel.
             </p>
           </div>
         </div>
@@ -276,7 +278,27 @@ export default function Contact() {
                   />
                 </div>
 
-                {/* 8. Submit button */}
+                {/* 8. Privacy Consent Checkbox */}
+                <div className="flex items-start gap-2.5 pt-1">
+                  <input
+                    type="checkbox"
+                    id="page-contact-consent"
+                    name="consent"
+                    required
+                    checked={formData.consent}
+                    onChange={handleChange}
+                    className="mt-1 h-4 w-4 rounded border-neutral-300 text-[#0C3332] focus:ring-[#D9BA6A] cursor-pointer"
+                  />
+                  <label htmlFor="page-contact-consent" className="text-xs text-neutral-600 font-light leading-relaxed cursor-pointer select-none">
+                    I consent to Ritora Luxe Real Estate collecting and processing my contact details in accordance with the{" "}
+                    <Link to="/privacy-policy" className="text-[#0C3332] font-medium underline hover:text-[#B89645]">
+                      Privacy Policy
+                    </Link>
+                    . <span className="text-red-500">*</span>
+                  </label>
+                </div>
+
+                {/* 9. Submit button */}
                 <div className="pt-2">
                   <button
                     type="submit"
@@ -383,7 +405,7 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* Advisory Guarantee Box */}
+            {/* Advisory Commitment Box */}
             <div className="bg-[#0C3332] text-white rounded-xl p-7 border border-[#D9BA6A]/40 space-y-3">
               <h4 className="font-serif text-lg font-bold text-white">
                 Independent Perspective
