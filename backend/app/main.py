@@ -7,6 +7,7 @@ from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 
 from app.api.auth import router as auth_router
+from app.api.enquiries import router as enquiries_router
 from app.core.config import settings
 from app.core.limiter import limiter
 
@@ -31,6 +32,7 @@ app = FastAPI(
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 app.include_router(auth_router)
+app.include_router(enquiries_router, prefix=settings.API_PREFIX)
 
 # CORS Configuration (supporting credentials for httpOnly refresh cookies)
 app.add_middleware(

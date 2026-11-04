@@ -12,7 +12,7 @@ export default function WhyChooseUs() {
       icon: UserCheck,
       title: "Personal, Objective Advisory",
       description:
-        "Direct principal involvement providing considered counsel tailored specifically to your financial objectives.",
+        "Direct leadership involvement providing considered counsel tailored specifically to your financial objectives.",
     },
     {
       icon: Sparkles,

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Mail, Phone, ArrowRight, CheckCircle2, MessageSquare, Clock } from "lucide-react";
 import logoImg from "../assets/Images/logo (3).png";
+import { api } from "../services/api";
 
 /**
  * Footer Component for Ritora Luxe Real Estate LLC
@@ -19,7 +20,7 @@ export default function Footer() {
   const [subscribed, setSubscribed] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
-  const handleSubscribe = (e) => {
+  const handleSubscribe = async (e) => {
     e.preventDefault();
     const cleanEmail = email.trim().toLowerCase();
     if (!cleanEmail || !cleanEmail.includes("@")) {
@@ -32,6 +33,7 @@ export default function Footer() {
       return;
     }
 
+    // 1. Save in local browser storage
     try {
       const existing = JSON.parse(localStorage.getItem("ritora_newsletter_subscribers") || "[]");
       const subscriberEntry = {
@@ -45,16 +47,25 @@ export default function Footer() {
         existing.push(subscriberEntry);
         localStorage.setItem("ritora_newsletter_subscribers", JSON.stringify(existing));
       }
-      setSubscribed(true);
-      setErrorMsg("");
-      setEmail("");
-      setConsent(false);
-      setTimeout(() => setSubscribed(false), 6000);
     } catch (err) {
       console.warn("Newsletter storage error:", err);
-      setSubscribed(true);
-      setEmail("");
     }
+
+    // 2. Transmit to backend API
+    try {
+      await api.post("/enquiries/newsletter", {
+        email: cleanEmail,
+        consent: true,
+      });
+    } catch (apiErr) {
+      console.info("Newsletter API non-blocking fallback (saved locally):", apiErr.message);
+    }
+
+    setSubscribed(true);
+    setErrorMsg("");
+    setEmail("");
+    setConsent(false);
+    setTimeout(() => setSubscribed(false), 6000);
   };
 
   return (
@@ -152,8 +163,10 @@ export default function Footer() {
             </p>
 
             <div className="pt-2 text-xs text-neutral-400 space-y-1">
-              <p className="font-semibold text-neutral-300">Ritora Luxe Real Estate LLC</p>
-              <p>Boutique Real Estate Advisory</p>
+              <p className="font-semibold text-neutral-300">Ritora Luxe Real Estate L.L.C</p>
+              <p>Real Estate Buying & Selling Brokerage</p>
+              <p>Trade Licence No.: <span className="text-[#D9BA6A]">1629468</span></p>
+              <p>RERA ORN: <span className="text-[#D9BA6A]">62372</span></p>
             </div>
           </div>
 
@@ -301,7 +314,7 @@ export default function Footer() {
             </Link>
           </div>
           <div>
-            &copy; {new Date().getFullYear()} Ritora Luxe Real Estate LLC. All rights reserved.
+            &copy; {new Date().getFullYear()} Ritora Luxe Real Estate L.L.C. All rights reserved.
           </div>
         </div>
       </div>

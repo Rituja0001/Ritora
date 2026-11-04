@@ -1,3 +1,4 @@
+import SEO from "../components/SEO";
 import React from "react";
 import Hero from "../components/Hero";
 import StatsBar from "../components/StatsBar";
@@ -19,12 +20,13 @@ import ContactSection from "../components/ContactSection";
  * 5. Investment Opportunities (4 core investor pillars)
  * 6. Developer Partnerships (5 strategic capabilities)
  * 7. Focus Locations (5 prime areas, unverified yields removed)
- * 8. Leadership (Dhwani Arora, Founder & Managing Director)
+ * 8. Leadership (Ritish Arora, Founder & CEO & Dhwani Arora, Co-Founder & COO)
  * 9. Direct Advisory Contact Form (functional consultation form)
  */
 export default function Home() {
   return (
     <div className="bg-[#0C3332] text-white">
+      <SEO title="Boutique Dubai Property Advisory" description="Ritora Luxe Real Estate L.L.C is a boutique Dubai property advisory providing considered counsel for private investors, buyers, and developer partnerships." canonicalPath="/" />
       {/* 1. Hero Section (Dark) */}
       <Hero />
 

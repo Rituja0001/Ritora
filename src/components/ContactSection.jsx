@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Mail, Phone, Clock, Send, CheckCircle2, Sparkles } from "lucide-react";
+import { Mail, Phone, Clock, Send, CheckCircle2, Sparkles, AlertCircle } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa6";
+import { api } from "../services/api";
 
 /**
  * ContactSection Component (Section 10)
@@ -27,16 +28,20 @@ export default function ContactSection() {
 
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({ ...prev, [name]: type === "checkbox" ? checked : value }));
+    if (errorMessage) setErrorMessage("");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
+    setErrorMessage("");
 
+    // 1. Always reliably save locally in browser storage
     try {
       const existing = JSON.parse(localStorage.getItem("ritora_enquiries") || "[]");
       const submission = {
@@ -51,10 +56,24 @@ export default function ContactSection() {
       console.warn("Storage error:", err);
     }
 
-    setTimeout(() => {
+    // 2. Transmit to backend API if available
+    try {
+      await api.post("/enquiries", {
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim(),
+        message: formData.message.trim(),
+        role: formData.role,
+        budget: formData.budget ? formData.budget.trim() : null,
+        timeframe: formData.timeframe,
+        consent: Boolean(formData.consent),
+      });
+    } catch (apiErr) {
+      console.info("Backend API non-blocking fallback (saved locally):", apiErr.message);
+    } finally {
       setSubmitting(false);
       setSubmitted(true);
-    }, 600);
+    }
   };
 
   const handleResetForm = () => {
@@ -86,7 +105,7 @@ export default function ContactSection() {
             Speak With an Advisor
           </h2>
           <p className="text-neutral-600 text-sm sm:text-base mt-2 font-light leading-relaxed">
-            Whether you are assessing off-plan allocations, seeking a private residence, or exploring developer representation, our Managing Director and advisory team provide considered counsel.
+            Whether you are assessing off-plan allocations, seeking a private residence, or exploring developer representation, our leadership and advisory team provide considered counsel.
           </p>
         </div>
 
@@ -355,6 +374,15 @@ export default function ContactSection() {
                       Private meetings in Dubai arranged upon appointment.
                     </p>
                   </div>
+                </div>
+
+                {/* Office Address & Regulatory Info */}
+                <div className="pt-2 border-t border-neutral-100 space-y-1.5 text-xs text-neutral-600">
+                  <p className="font-semibold text-[#0C3332]">Ritora Luxe Real Estate L.L.C</p>
+                  <p>Office 100A-72, NGI Building, Port Saeed, Dubai, UAE</p>
+                  <p className="text-[11px] text-neutral-500">
+                    Trade Licence: <span className="font-semibold text-[#0C3332]">1629468</span> &bull; RERA ORN: <span className="font-semibold text-[#0C3332]">62372</span>
+                  </p>
                 </div>
               </div>
 

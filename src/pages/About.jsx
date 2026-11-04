@@ -1,3 +1,4 @@
+import SEO from "../components/SEO";
 import React from "react";
 import { Link } from "react-router-dom";
 import {
@@ -8,27 +9,21 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import CTASection from "../components/CTASection";
+import LeadershipSection from "../components/LeadershipSection";
 
 /**
- * About Page - Ritora Luxe Real Estate LLC
+ * About Page - Ritora Luxe Real Estate L.L.C
  * Features:
  * 1. Brand Narrative & Founding Philosophy
  * 2. Dual Focus: Investor Focus & Developer Focus
  * 3. Advisory Standards & Methodology
- * 4. Leadership Section: Dhwani Arora, Founder & Managing Director
+ * 4. Leadership Section (Ritish Arora & Dhwani Arora)
  * 5. Call to Action
  */
 export default function About() {
-  const leader = {
-    name: "Dhwani Arora",
-    title: "Founder & Managing Director",
-    credentials: "Strategic Advisory & Client Leadership",
-    bio: "Directing Ritora Luxe Real Estate LLC with an unwavering commitment to independent advisory, personalized client care, and considered execution across Dubai's prime residential and investment markets.",
-    initials: "DA",
-  };
-
   return (
     <div className="bg-[#FAF8F5] text-[#0C3332] min-h-screen">
+      <SEO title="About Us | Boutique Real Estate Advisory" description="Learn about Ritora Luxe Real Estate L.L.C, our leadership, principles, and considered advisory approach in Dubai." canonicalPath="/about" />
       {/* 1. Header Banner */}
       <section className="bg-[#0C3332] text-white pt-28 pb-16 sm:pt-36 sm:pb-20 lg:pt-40 lg:pb-24 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -39,7 +34,7 @@ export default function About() {
             </div>
             <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-5 leading-tight">
               Boutique by Design. <br />
-              <span className="text-gold-gradient font-normal">Considered by Principle.</span>
+              <span className="text-gold-gradient font-normal">Guided by Principle.</span>
             </h1>
             <p className="text-neutral-200 text-sm sm:text-base lg:text-lg font-light leading-relaxed">
               Ritora Luxe Real Estate LLC is an independent Dubai property advisory built on objective analysis, personalized client attention, and considered commercial execution across the city's key investment corridors.
@@ -170,44 +165,7 @@ export default function About() {
       </section>
 
       {/* 4. Leadership Section */}
-      <section className="py-16 sm:py-20 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
-          <span className="text-xs uppercase tracking-[0.2em] text-[#B89645] font-bold block mb-2">
-            LEADERSHIP
-          </span>
-          <h2 className="font-serif text-2xl sm:text-4xl font-bold text-[#0C3332] tracking-tight">
-            Leadership
-          </h2>
-          <p className="text-neutral-600 text-sm sm:text-base mt-2 font-light">
-            Hands-on direction driving client advisory, strategic developer partnerships, and operational governance.
-          </p>
-        </div>
-
-        {/* Single Centered Leadership Card */}
-        <div className="max-w-xl mx-auto">
-          <div className="bg-white rounded-xl p-8 sm:p-10 border border-[#D9BA6A]/30 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col items-center text-center space-y-4">
-            <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-br from-[#0C3332] to-[#154F4E] text-[#D9BA6A] flex items-center justify-center font-serif text-2xl sm:text-3xl font-bold border-2 border-[#D9BA6A]/50 shadow-md">
-              {leader.initials}
-            </div>
-
-            <div>
-              <h3 className="font-serif text-2xl font-bold text-[#0C3332]">
-                {leader.name}
-              </h3>
-              <div className="text-xs uppercase tracking-wider font-semibold text-[#B89645] mt-1">
-                {leader.title}
-              </div>
-              <div className="text-xs text-neutral-500 font-medium mt-0.5">
-                {leader.credentials}
-              </div>
-            </div>
-
-            <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed font-light pt-3 border-t border-neutral-100 max-w-md">
-              {leader.bio}
-            </p>
-          </div>
-        </div>
-      </section>
+      <LeadershipSection />
 
       {/* 5. CTA Section */}
       <CTASection

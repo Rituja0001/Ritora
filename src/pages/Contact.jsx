@@ -1,3 +1,4 @@
+import SEO from "../components/SEO";
 import React, { useState, useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import {
@@ -11,6 +12,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa6";
+import { api } from "../services/api";
 
 /**
  * Contact Page - Ritora Luxe Real Estate LLC
@@ -59,10 +61,11 @@ export default function Contact() {
     setFormData((prev) => ({ ...prev, [name]: type === "checkbox" ? checked : value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
 
+    // 1. Always reliably save locally in browser storage
     try {
       const existing = JSON.parse(localStorage.getItem("ritora_enquiries") || "[]");
       const submission = {
@@ -77,10 +80,24 @@ export default function Contact() {
       console.warn("Storage error:", err);
     }
 
-    setTimeout(() => {
+    // 2. Transmit to backend API if available
+    try {
+      await api.post("/enquiries", {
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim(),
+        message: formData.message.trim(),
+        role: formData.role,
+        budget: formData.budget ? formData.budget.trim() : null,
+        timeframe: formData.timeframe,
+        consent: Boolean(formData.consent),
+      });
+    } catch (apiErr) {
+      console.info("Backend API non-blocking fallback (saved locally):", apiErr.message);
+    } finally {
       setSubmitting(false);
       setSubmitted(true);
-    }, 600);
+    }
   };
 
   const handleResetForm = () => {
@@ -101,6 +118,7 @@ export default function Contact() {
 
   return (
     <div className="bg-[#FAF8F5] text-[#0C3332] min-h-screen">
+      <SEO title="Contact Our Advisory Team" description="Schedule a confidential property consultation with Ritora Luxe Real Estate L.L.C at our NGI Building Port Saeed office." canonicalPath="/contact" />
       {/* 1. Header Banner */}
       <section className="bg-[#0C3332] text-white pt-28 pb-16 sm:pt-36 sm:pb-20 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -113,7 +131,7 @@ export default function Contact() {
               Speak With an Advisor
             </h1>
             <p className="text-neutral-200 text-sm sm:text-base lg:text-lg font-light leading-relaxed">
-              Whether you are an investor assessing off-plan allocations, a private buyer seeking a residence, or a developer exploring sales representation, our Managing Director and advisory team provide considered counsel.
+              Whether you are an investor assessing off-plan allocations, a private buyer seeking a residence, or a developer exploring sales representation, our leadership and advisory team provide considered counsel.
             </p>
           </div>
         </div>
@@ -387,6 +405,38 @@ export default function Contact() {
                     <p className="text-xs text-neutral-500 font-light mt-0.5">
                       Private meetings in Dubai arranged upon appointment.
                     </p>
+                  </div>
+                </div>
+
+                {/* Office Address */}
+                <div className="flex items-start gap-3.5 pt-2 border-t border-neutral-100">
+                  <div className="w-10 h-10 rounded-lg bg-[#FAF8F5] border border-neutral-200 flex items-center justify-center text-[#0C3332] flex-shrink-0">
+                    <Sparkles className="w-5 h-5 text-[#B89645]" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] uppercase tracking-wider text-neutral-400 font-bold block">
+                      Registered Office
+                    </span>
+                    <p className="text-sm font-medium text-neutral-700">
+                      Office 100A-72, NGI Building, Port Saeed, Dubai, UAE
+                    </p>
+                    <p className="text-xs text-neutral-500 font-light mt-0.5">
+                      Ritora Luxe Real Estate L.L.C &bull; Real Estate Buying & Selling Brokerage
+                    </p>
+                  </div>
+                </div>
+
+                {/* Regulatory Licensing */}
+                <div className="pt-2 border-t border-neutral-100">
+                  <div className="p-3 bg-[#FAF8F5] rounded border border-[#D9BA6A]/30 text-xs text-neutral-600 space-y-1">
+                    <div className="flex justify-between">
+                      <span className="font-medium text-neutral-500">Trade Licence No.:</span>
+                      <span className="font-semibold text-[#0C3332]">1629468</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="font-medium text-neutral-500">Company RERA ORN:</span>
+                      <span className="font-semibold text-[#0C3332]">62372</span>
+                    </div>
                   </div>
                 </div>
               </div>

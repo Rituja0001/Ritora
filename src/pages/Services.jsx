@@ -1,3 +1,4 @@
+import SEO from "../components/SEO";
 import React from "react";
 import { Link } from "react-router-dom";
 import { 
@@ -29,7 +30,7 @@ export default function Services() {
       title: "Private Client Advisory",
       badge: "Investors & End-Users",
       description:
-        "Bespoke representation for discerning individuals acquiring luxury residences and prime investment holdings across Dubai. We provide confidential asset sourcing, legal document verification, and independent pricing valuation.",
+        "Bespoke representation for discerning individuals acquiring luxury residences and prime investment holdings across Dubai. We provide confidential asset sourcing, document coordination support, and comparative market analysis.",
       deliverables: [
         "Confidential off-market deal access",
         "Comparable transaction market analysis",
@@ -45,7 +46,7 @@ export default function Services() {
       deliverables: [
         "VIP first-tier pricing allocation",
         "Payment plan viability stress-testing",
-        "Capital escalation modeling",
+        "price-movement scenario analysis",
       ],
     },
     {
@@ -65,7 +66,7 @@ export default function Services() {
       title: "UAE Golden Visa Advisory",
       badge: "Residency & Legal Structuring",
       description:
-        "Comprehensive navigation of the UAE 10-Year Golden Visa framework for qualifying property investors purchasing real estate valued at AED 2,000,000 and above, including family sponsorship guidance.",
+        "Comprehensive navigation of the UAE 10-Year Golden Visa framework for qualifying property investors purchasing real estate valued at AED 2,000,000 and above, including family sponsorship guidance. Applications are coordinated through authorised service providers, where applicable.",
       deliverables: [
         "DLD title deed qualification review",
         "Government authority liaison",
@@ -88,6 +89,7 @@ export default function Services() {
 
   return (
     <div className="bg-[#FAF8F5] text-[#0C3332] min-h-screen">
+      <SEO title="Boutique Real Estate Services" description="Comprehensive advisory services: property acquisition, private resale, scenario analysis, and golden visa coordination." canonicalPath="/services" />
       {/* 1. Hero Banner */}
       <section className="bg-[#0C3332] text-white pt-28 pb-16 sm:pt-36 sm:pb-20 lg:pt-40 lg:pb-24 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -173,7 +175,7 @@ export default function Services() {
                 Custom Advisory Mandate
               </h3>
               <p className="text-neutral-300 text-xs sm:text-sm leading-relaxed font-light mb-6">
-                Have a specialized acquisition, developer assignment, or cross-border transaction in mind? Our Managing Director and advisory team are available for confidential consultations.
+                Have a specialized acquisition, developer assignment, or cross-border transaction in mind? Our leadership and advisory team are available for confidential consultations.
               </p>
             </div>
 

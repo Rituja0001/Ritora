@@ -1,3 +1,4 @@
+import SEO from "../components/SEO";
 import React from "react";
 import { Link } from "react-router-dom";
 import { MapPin, Sparkles, ArrowRight, Building2 } from "lucide-react";
@@ -12,6 +13,7 @@ import { focusLocations } from "../data/locationsData";
 export default function Locations() {
   return (
     <div className="bg-[#FAF8F5] text-[#0C3332] min-h-screen">
+      <SEO title="Prime Dubai Focus Locations" description="Explore Dubai's premier residential and investment communities: Palm Jumeirah, Downtown, Dubai Hills, and more." canonicalPath="/locations" />
       {/* 1. Header Banner */}
       <section className="bg-[#0C3332] text-white pt-28 pb-16 sm:pt-36 sm:pb-20 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

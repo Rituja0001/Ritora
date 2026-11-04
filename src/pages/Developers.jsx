@@ -1,3 +1,4 @@
+import SEO from "../components/SEO";
 import React from "react";
 import { Link } from "react-router-dom";
 import {
@@ -62,6 +63,7 @@ export default function Developers() {
 
   return (
     <div className="bg-[#FAF8F5] text-[#0C3332] min-h-screen">
+      <SEO title="Developer Partnerships & Sales Advisory" description="End-to-end sales strategy, channel marketing, and project advisory for leading property developers in Dubai." canonicalPath="/developers" />
       {/* 1. Header Banner */}
       <section className="bg-[#0C3332] text-white pt-28 pb-16 sm:pt-36 sm:pb-20 lg:pt-40 lg:pb-24 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

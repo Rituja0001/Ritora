@@ -1,3 +1,4 @@
+import SEO from "../components/SEO";
 import React from "react";
 import { Link } from "react-router-dom";
 import { Sparkles, MessageSquare, Building2, ShieldCheck, ArrowRight } from "lucide-react";
@@ -11,6 +12,7 @@ import CTASection from "../components/CTASection";
 export default function Projects() {
   return (
     <div className="bg-[#FAF8F5] text-[#0C3332] min-h-screen">
+      <SEO title="Curated Projects & Developments" description="Explore curated off-plan and luxury property opportunities across Dubai with Ritora Luxe Real Estate L.L.C." canonicalPath="/projects" />
       {/* 1. Header Banner */}
       <section className="bg-[#0C3332] text-white pt-28 pb-20 sm:pt-36 sm:pb-24 lg:pt-40 lg:pb-28 relative overflow-hidden">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
@@ -76,7 +78,7 @@ export default function Projects() {
               Master Plan Longevity
             </h3>
             <p className="text-neutral-600 text-xs sm:text-sm font-light leading-relaxed">
-              Evaluating infrastructure connectivity, community governance, and sustained capital appreciation.
+              Evaluating infrastructure connectivity, community governance, and long-term market potential.
             </p>
           </div>
 

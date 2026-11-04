@@ -1,3 +1,4 @@
+import SEO from "../components/SEO";
 import React from "react";
 import { Link } from "react-router-dom";
 import { FileText, ArrowLeft, AlertCircle } from "lucide-react";
@@ -9,6 +10,7 @@ import { FileText, ArrowLeft, AlertCircle } from "lucide-react";
 export default function TermsConditions() {
   return (
     <div className="bg-[#FAF8F5] text-[#0C3332] min-h-screen">
+      <SEO title="Terms and Conditions" description="Terms and Conditions governing the use of the Ritora Luxe Real Estate L.L.C property advisory website and services." canonicalPath="/terms-and-conditions" />
       {/* Header */}
       <section className="bg-[#0C3332] text-white pt-28 pb-14 sm:pt-36 sm:pb-16 relative">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -23,7 +25,7 @@ export default function TermsConditions() {
             Terms & Conditions
           </h1>
           <p className="text-neutral-300 text-xs sm:text-sm mt-2 font-light">
-            Effective Date: January 1, 2025 &bull; Last Updated: October 2026
+            Effective Date: Pending Actual Website Launch Date &bull; Last Updated: Pending Actual Website Launch Date
           </p>
         </div>
       </section>
@@ -54,7 +56,7 @@ export default function TermsConditions() {
               3. Off-Plan & Developer Disclaimers
             </h2>
             <p>
-              Project renders, architectural illustrations, unit layouts, completion dates, and amenities are subject to modification by developers, master developers, and regulatory authorities including the Dubai Land Department (DLD) and the Real Estate Regulatory Agency (RERA). Ritora Luxe Real Estate LLC acts as an independent advisory firm and does not warrant the performance or handover timelines of third-party property developers.
+              Project renders, architectural illustrations, unit layouts, completion dates, and amenities are subject to modification by developers, master developers, and regulatory authorities including the Dubai Land Department (DLD) and the Real Estate Regulatory Agency (RERA). Ritora Luxe Real Estate L.L.C acts as an independent advisory firm and does not warrant the performance or handover timelines of third-party property developers.
             </p>
           </div>
 
@@ -63,7 +65,7 @@ export default function TermsConditions() {
               4. Intellectual Property
             </h2>
             <p>
-              All trademarks, logos, texts, images, and software displayed on this site are the property of Ritora Luxe Real Estate LLC or their respective developer copyright holders. Unauthorized reproduction, modification, or distribution is strictly prohibited.
+              All trademarks, logos, texts, images, and software displayed on this site are the property of Ritora Luxe Real Estate L.L.C or their respective developer copyright holders. Unauthorized reproduction, modification, or distribution is strictly prohibited.
             </p>
           </div>
 
@@ -81,7 +83,11 @@ export default function TermsConditions() {
               6. Contact Information
             </h2>
             <div className="mt-3 p-4 bg-[#FAF8F5] rounded-lg border border-neutral-200 text-xs sm:text-sm space-y-1">
-              <p><strong>Entity:</strong> Ritora Luxe Real Estate LLC</p>
+              <p><strong>Entity:</strong> Ritora Luxe Real Estate L.L.C</p>
+              <p><strong>Licensed Activity:</strong> Real Estate Buying & Selling Brokerage</p>
+              <p><strong>Trade Licence No.:</strong> 1629468</p>
+              <p><strong>Company RERA ORN:</strong> 62372</p>
+              <p><strong>Office Address:</strong> Office 100A-72, NGI Building, Port Saeed, Dubai, UAE</p>
               <p><strong>Email:</strong> <a href="mailto:info@ritoraluxerealestate.ae" className="text-[#0C3332] font-semibold underline">info@ritoraluxerealestate.ae</a></p>
               <p><strong>Phone:</strong> <a href="tel:+971585758023" className="text-[#0C3332] font-semibold">+971 58 575 8023</a></p>
               <p><strong>Location:</strong> Dubai, United Arab Emirates</p>

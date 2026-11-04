@@ -1,3 +1,4 @@
+import SEO from "../components/SEO";
 import React from "react";
 import { Link } from "react-router-dom";
 import { ShieldCheck, Lock, Eye, FileText, ArrowLeft, Mail } from "lucide-react";
@@ -9,6 +10,7 @@ import { ShieldCheck, Lock, Eye, FileText, ArrowLeft, Mail } from "lucide-react"
 export default function PrivacyPolicy() {
   return (
     <div className="bg-[#FAF8F5] text-[#0C3332] min-h-screen">
+      <SEO title="Privacy Policy" description="Privacy Policy of Ritora Luxe Real Estate L.L.C detailing client data protection, cookies, and regulatory compliance." canonicalPath="/privacy-policy" />
       {/* Header */}
       <section className="bg-[#0C3332] text-white pt-28 pb-14 sm:pt-36 sm:pb-16 relative">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -23,7 +25,7 @@ export default function PrivacyPolicy() {
             Privacy Policy
           </h1>
           <p className="text-neutral-300 text-xs sm:text-sm mt-2 font-light">
-            Effective Date: January 1, 2025 &bull; Last Updated: October 2026
+            Effective Date: Pending Actual Website Launch Date &bull; Last Updated: Pending Actual Website Launch Date
           </p>
         </div>
       </section>
@@ -36,7 +38,7 @@ export default function PrivacyPolicy() {
               1. Introduction
             </h2>
             <p>
-              This Privacy Policy describes how <strong>Ritora Luxe Real Estate LLC</strong> (&ldquo;Ritora&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;) collects, uses, protects, and discloses personal information obtained through our website (
+              This Privacy Policy describes how <strong>Ritora Luxe Real Estate L.L.C</strong> (&ldquo;Ritora&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;) collects, uses, protects, and discloses personal information obtained through our website (
               <a href="https://ritoraluxerealestate.ae" className="text-[#0C3332] underline hover:text-[#B89645]">
                 ritoraluxerealestate.ae
               </a>
@@ -75,7 +77,7 @@ export default function PrivacyPolicy() {
               4. Data Sharing & Third Parties
             </h2>
             <p>
-              We do <strong>not</strong> sell, rent, or trade your personal information to third parties. We may share information only with licensed partner developers, escrow escrow agents, or legal counsel strictly when authorized by you to advance a specific property transaction.
+              We do <strong>not</strong> sell, rent, or trade your personal information to third parties. We may share information only with licensed partner developers, escrow agents, or legal counsel strictly when authorized by you to advance a specific property transaction.
             </p>
           </div>
 
@@ -109,7 +111,11 @@ export default function PrivacyPolicy() {
               For any privacy-related questions, corrections, or data removal requests, please contact our compliance desk:
             </p>
             <div className="mt-3 p-4 bg-[#FAF8F5] rounded-lg border border-neutral-200 text-xs sm:text-sm space-y-1">
-              <p><strong>Entity:</strong> Ritora Luxe Real Estate LLC</p>
+              <p><strong>Entity:</strong> Ritora Luxe Real Estate L.L.C</p>
+              <p><strong>Licensed Activity:</strong> Real Estate Buying & Selling Brokerage</p>
+              <p><strong>Trade Licence No.:</strong> 1629468</p>
+              <p><strong>RERA ORN:</strong> 62372</p>
+              <p><strong>Office Address:</strong> Office 100A-72, NGI Building, Port Saeed, Dubai, UAE</p>
               <p><strong>Email:</strong> <a href="mailto:info@ritoraluxerealestate.ae" className="text-[#0C3332] font-semibold underline">info@ritoraluxerealestate.ae</a></p>
               <p><strong>Phone:</strong> <a href="tel:+971585758023" className="text-[#0C3332] font-semibold">+971 58 575 8023</a></p>
               <p><strong>Jurisdiction:</strong> Dubai, United Arab Emirates</p>

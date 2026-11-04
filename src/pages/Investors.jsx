@@ -1,3 +1,4 @@
+import SEO from "../components/SEO";
 import React from "react";
 import { Link } from "react-router-dom";
 import {
@@ -32,7 +33,7 @@ export default function Investors() {
       title: "Capital Appreciation",
       tagline: "Strategic Entry in High-Growth Corridors",
       description:
-        "Targeting early-stage off-plan launches in infrastructure-backed growth hubs (such as Dubai South and Palm Jebel Ali) where capital values expand significantly as master-community milestones are achieved.",
+        "Targeting early-stage off-plan launches in infrastructure-backed growth hubs (such as Dubai South and Palm Jebel Ali) where capital values may offer long-term value potential as master-community milestones are achieved.",
       metrics: ["Early Phase Entry Pricing", "Infrastructure Catalysts", "Phased Value Milestones"],
     },
     {
@@ -63,6 +64,7 @@ export default function Investors() {
 
   return (
     <div className="bg-[#FAF8F5] text-[#0C3332] min-h-screen">
+      <SEO title="Private Investor Advisory" description="Strategic real estate investment advisory, portfolio allocation, and capital preservation across prime Dubai markets." canonicalPath="/investors" />
       {/* 1. Header Banner */}
       <section className="bg-[#0C3332] text-white pt-28 pb-16 sm:pt-36 sm:pb-20 lg:pt-40 lg:pb-24 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -216,7 +218,7 @@ export default function Investors() {
       <CTASection
         eyebrow="PORTFOLIO CONSULTATION"
         title="Schedule an Investor Discussion"
-        description="Speak with our Managing Director and advisory team to review upcoming off-plan launches, pricing tiers, and tailored allocation strategies."
+        description="Speak with our leadership and advisory team to review upcoming off-plan launches, pricing tiers, and tailored allocation strategies."
         primaryCtaText="Request a Consultation"
         primaryCtaLink="/contact"
       />

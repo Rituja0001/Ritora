@@ -1,3 +1,4 @@
+import SEO from "../components/SEO";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { 
@@ -13,6 +14,7 @@ import {
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa6";
 import CTASection from "../components/CTASection";
+import { api } from "../services/api";
 
 /**
  * SellRent Page - Ritora Luxe Real Estate LLC
@@ -50,7 +52,7 @@ export default function SellRent() {
     setFormData((prev) => ({ ...prev, [name]: type === "checkbox" ? checked : value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
 
@@ -67,10 +69,31 @@ export default function SellRent() {
       console.warn("Storage error:", err);
     }
 
-    setTimeout(() => {
+    try {
+      const detailsMessage = [
+        `[Listing Type: ${formData.listingType}]`,
+        `Property: ${formData.propertyType} in ${formData.community || "Dubai"}`,
+        `Bedrooms: ${formData.bedrooms}`,
+        formData.expectedPrice ? `Expected Price/Rental: AED ${formData.expectedPrice}` : null,
+        formData.message ? `Remarks: ${formData.message}` : null
+      ].filter(Boolean).join("\n");
+
+      await api.post("/enquiries", {
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim(),
+        message: detailsMessage,
+        role: `Owner (${formData.listingType})`,
+        budget: formData.expectedPrice ? `AED ${formData.expectedPrice}` : null,
+        timeframe: "Immediate Listing",
+        consent: Boolean(formData.consent),
+      });
+    } catch (apiErr) {
+      console.info("Backend API non-blocking fallback:", apiErr.message);
+    } finally {
       setSubmitting(false);
       setSubmitted(true);
-    }, 600);
+    }
   };
 
   const handleReset = () => {
@@ -91,6 +114,7 @@ export default function SellRent() {
 
   return (
     <div className="bg-[#FAF8F5] text-[#0C3332] min-h-screen">
+      <SEO title="List Your Property | Sell & Lease Representation" description="Private owner representation for selling or leasing prime Dubai residential and commercial property." canonicalPath="/sell-rent" />
       {/* 1. Header Banner */}
       <section className="bg-[#0C3332] text-white pt-28 pb-16 sm:pt-36 sm:pb-20 lg:pt-40 lg:pb-24 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">

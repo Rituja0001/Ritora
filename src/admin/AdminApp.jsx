@@ -6,6 +6,7 @@ import { AuthProvider } from "./context/AuthContext";
 const AdminLogin = lazy(() => import("./pages/AdminLogin"));
 const AdminLayout = lazy(() => import("./components/AdminLayout"));
 const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
+const AdminEnquiries = lazy(() => import("./pages/AdminEnquiries"));
 const AdminSectionPage = lazy(() => import("./pages/AdminSectionPage"));
 
 function AdminNoIndex() {
@@ -51,7 +52,7 @@ function AdminRouteTree() {
               />
               <Route
                 path="enquiries"
-                element={<AdminSectionPage title="Enquiries" />}
+                element={<AdminEnquiries />}
               />
               <Route path="media" element={<AdminSectionPage title="Media" />} />
               <Route
