@@ -1,7 +1,7 @@
 import SEO from "../components/SEO";
 import React from "react";
 import { Link } from "react-router-dom";
-import { ShieldCheck, Lock, Eye, FileText, ArrowLeft, Mail } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 /**
  * PrivacyPolicy Page - Ritora Luxe Real Estate LLC

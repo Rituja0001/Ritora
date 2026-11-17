@@ -15,7 +15,7 @@ import Locations from "./pages/Locations";
 import Contact from "./pages/Contact";
 import Services from "./pages/Services";
 import SellRent from "./pages/SellRent";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
+import PrivacyPolicy from "./pages/LegalPrivacy";
 import TermsConditions from "./pages/TermsConditions";
 
 const AdminApp = lazy(() => import("./admin/AdminApp"));
